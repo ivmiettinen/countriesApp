@@ -1,0 +1,1 @@
+web: set "REACT_APP_API_KEY=7f651c8bc1c40d7e73b38877e6cc2f24" && npm start
