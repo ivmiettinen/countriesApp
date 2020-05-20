@@ -7,7 +7,7 @@ const CountryFilterItem = ({ weather }) => {
 
   return (
     <div>
-      {weather.map(current => {
+      {weather.map((current) => {
         return (
           <div key={current.weather_code}>
             <b>Temperature:</b>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CountriesFilter = props => {
+const CountriesFilter = (props) => {
   // console.log('Kaikki propsit:', props);
   // console.log('buttoniko:', props.buttoni);
 
