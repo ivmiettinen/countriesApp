@@ -3,7 +3,7 @@ import React from 'react';
 const CountryFilterItem = ({ weather }) => {
   //   console.log('itemi:', weather.current);
 
-  console.log('weather:', weather);
+  // console.log('weather:', weather);
 
   return (
     <div>
