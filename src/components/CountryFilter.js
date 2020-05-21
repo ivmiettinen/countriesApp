@@ -27,12 +27,12 @@ const CountryFilter = ({ countries }) => {
 
     //192.168.2.2/
 
-    const herokuProxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    // const herokuProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
     axios
       .get(
-        herokuProxyUrl +
-          `http://api.weatherstack.com/current?access_key=${api_key}&query=${countries.capital}`
+        // herokuProxyUrl +
+        `http://api.weatherstack.com/current?access_key=${api_key}&query=${countries.capital}`
       )
       .then((response) => {
         setWeather([response.data.current]);
