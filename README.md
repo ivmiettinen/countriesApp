@@ -1,12 +1,12 @@
 How to run:
 
 1.Step:
-Add your own 'REACT_APP_API_KEY' for api.weatherstack.com
+Add your own 'REACT_APP_API_KEY' for http://api.openweathermap.org/
 
 2.Step:
 
 set 'REACT_APP_API_KEY' && npm run dev
 
-Heroku live version:
 
-https://countries--api.herokuapp.com/
+Heroku live version:
+-currently unavailable
