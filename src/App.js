@@ -33,43 +33,33 @@ function App() {
   };
 
   const onKeyDownFunc = (e) => {
-    // console.log('onKeyDownFunc', e);
+
     // console.log('onKeyDownFunc key', e.keyCode);
 
     if (e.keyCode === 8) {
       setSearchTerm(e.target.value);
       setShowall(!showAll);
-      // console.log('Delete button ');
+
       setoneButtonCountry([]);
       setOnlyOneCountry([]);
     }
   };
 
-  // >=
+
   const oneCountry = (e) => {
     // console.log('value:', e.target.value);
 
     setShowall(!showAll);
 
-    //Old style function:
 
-    // function findNation(nation) {
-    //   return nation.name === e.target.value;
-    // }
-
-    // const userPickNation = results.find(findNation);
-
-    //
 
     const userPickNation = results.find(({ name }) => name === e.target.value);
-
-    //
 
     setOnlyOneCountry(onlyOneCountry.concat(userPickNation));
 
     // console.log('capital:', onlyOneCountry.capital);
 
-    //
+
     setoneButtonCountry(oneButtonCountry.concat(e.target.value));
   };
 

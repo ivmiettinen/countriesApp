@@ -1,83 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import CountryFilterItem from './CountryFilterItem';
-import '../App.css';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import CountryFilterItem from './CountryFilterItem'
+import '../App.css'
 
 const CountryFilter = ({ countries }) => {
-  const [weather, setWeather] = useState([]);
+    const [weather, setWeather] = useState([])
+    const [forecast, setForecast] = useState([])
 
-  // console.log('propseja:', countries);
+    // Fetch weather:
+    const api_key = process.env.REACT_APP_API_KEY
 
-  // console.log('propseja2:', countries.capital);
+    useEffect(() => {
+        const api_key = process.env.REACT_APP_API_KEY
 
-  // console.log('CountryFilter:', props);
-  // console.log(
-  //   'languages:',
-  //   props.countries.languages.map(param => {
-  //     return param.name;
-  //   })
-  // );
+        axios
+            .get(
+                `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
+            )
+            .then((response) => {
+                setWeather([response.data])
+                console.log('response.data.current', response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [countries.capital])
 
-  ///////////////////////////////////////////////
+    return (
+        <div>
+            <h3>{countries.name}</h3>
+            <p>Capital: {countries.capital}</p>
+            <p>Population: {countries.population}</p>
 
-  // Fetch weather:
+            <h4>Languages:</h4>
 
-  useEffect(() => {
-    const api_key = process.env.REACT_APP_API_KEY;
+            {countries.languages.map((param) => {
+                return <li key={param.iso639_1}>{param.name}</li>
+            })}
 
-    //192.168.2.2/
+            <img
+                className='flagPicture'
+                src={countries.flag}
+                alt='Country flag'
+            ></img>
 
-    // const herokuProxyUrl = 'https://cors-anywhere.herokuapp.com/';
-
-    axios
-      .get(
-        // herokuProxyUrl +
-        `http://api.weatherstack.com/current?access_key=${api_key}&query=${countries.capital}`
-      )
-      .then((response) => {
-        setWeather([response.data.current]);
-        // console.log('response.data.current', response.data.current);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [countries.capital]);
-
-  // console.log('SÄÄ', weather);
-
-  ///////////////////////////
-
-  return (
-    <div>
-      <h3>{countries.name}</h3>
-      <p>Capital: {countries.capital}</p>
-      <p>Population: {countries.population}</p>
-
-      <h4>Languages:</h4>
-
-      {countries.languages.map((param) => {
-        return <li key={param.iso639_1}>{param.name}</li>;
-      })}
-
-      <img
-        className='flagPicture'
-        src={countries.flag}
-        alt='Country flag'
-      ></img>
-
-      {/* {weather.map(weather => (
+            {/* {weather.map(weather => (
         <CountryFilterItem weather={weather} key={weather.location} />
       ))} */}
 
-      <h4>Weather in {countries.capital}</h4>
-      <CountryFilterItem weather={weather} />
-      <br />
-    </div>
-  );
-};
+            <h4>Weather in {countries.capital}</h4>
+            <CountryFilterItem weather={weather} />
+            <br />
+        </div>
+    )
+}
 
-export default CountryFilter;
-
-// {props.countries.languages.map(param => {
-//   return <li >{param.name}</li>;
-// })}
+export default CountryFilter
