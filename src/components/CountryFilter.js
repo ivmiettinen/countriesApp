@@ -11,8 +11,6 @@ const CountryFilter = ({ countries }) => {
     const api_key = process.env.REACT_APP_API_KEY
 
     useEffect(() => {
-        const api_key = process.env.REACT_APP_API_KEY
-
         axios
             .get(
                 `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
