@@ -17,7 +17,7 @@ const CountryFilter = ({ countries }) => {
             )
             .then((response) => {
                 setWeather([response.data])
-                console.log('response.data.current', response.data)
+                console.log('response.data.current', response.data.list.slice(0, 10))
             })
             .catch((error) => {
                 console.log(error)
