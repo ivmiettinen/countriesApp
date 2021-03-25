@@ -17,7 +17,10 @@ const CountryFilter = ({ countries }) => {
             )
             .then((response) => {
                 setWeather([response.data])
-                console.log('response.data.current', response.data.list.slice(0, 10))
+                console.log(
+                    'response.data.current',
+                    response.data.list.slice(0, 10)
+                )
             })
             .catch((error) => {
                 console.log(error)
@@ -47,7 +50,12 @@ const CountryFilter = ({ countries }) => {
       ))} */}
 
             <h4>Weather in {countries.capital}</h4>
-            <CountryFilterItem weather={weather} />
+
+            {weather.length > 0 ? (
+                <CountryFilterItem weather={weather} />
+            ) : (
+                <ul></ul>
+            )}
             <br />
         </div>
     )
