@@ -1,17 +1,20 @@
 import React from 'react';
 import WeatherItem from './WeatherItem';
 
-const Weather = ({ tomorrow, date }) => {
+const Weather = ({ tomorrow, date, images, parseTemp }) => {
   // console.log('tomorrow', tomorrow);
   // console.log('date', date);
   // console.log('typee', typeof tomorrow);
 
+  
+  console.log('images', images)
+
   return (
-    <div>
-    
+    <div >
       <WeatherItem
-      date={date}
-        temperature={tomorrow.main.temp}
+        date={date}
+        images={images}
+        temperature={parseTemp(tomorrow.main.temp).toFixed(1)}
         icon={tomorrow.weather.map((p) => p.icon)}
         description={tomorrow.weather.map((p) => p.description)}
         key={tomorrow.dt}
@@ -19,6 +22,8 @@ const Weather = ({ tomorrow, date }) => {
     </div>
   );
 };
+
+// {parseTemp({ temperature })}<
 
 export default Weather;
 

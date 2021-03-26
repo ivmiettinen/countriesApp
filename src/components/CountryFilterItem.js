@@ -1,77 +1,48 @@
 import React from 'react';
+import WeatherItem from './WeatherItem';
 
-
-
-const CountryFilterItem = ({ weather, forecast, tomorrowWeather }) => {
+const CountryFilterItem = ({ today, images, tomorrowWeather, parseTemp,date }) => {
   //   console.log('itemi:', weather.current);
-  console.log('tomorrowWeather', tomorrowWeather);
 
-  function temperatureConverter(valNum) {
-    valNum = parseFloat(valNum);
-    return valNum - 273.15;
-  }
+//   console.log('today', today);
+//   console.log(
+//     'today.main',
+//     today.map((p) => p.main.temp)
+//   );
+
+// //   console.log('fsdjaljasdlf', today.weather.map((p) => p.icon) )  
+
+//   console.log('iconii', icon)
+
+//   console.log(
+//     'ikoni',
+//     today.weather.map((p) => p.icon)
+//   );
+  //   console.log('imagesX', images);
+  //   console.log(
+  //     'date',
+  //     today.map((p) => p.dt_txt)
+  //   );
 
   //import whole imagefolder:
 
-  const images = importAll(
-    require.context('./images', false, /\.(png|jpe?g|svg)$/)
-  );
-
-  function importAll(r) {
-    let images = {};
-    r.keys().map((item, index) => {
-      images[item.replace('./', '')] = r(item);
-    });
-    return images;
-  }
+  //   const parseTemp = (p) => (p = parseFloat(p) - 273.15);
 
   return (
     <div>
+      <WeatherItem
+        date={date}
+        images={images}
+        temperature={parseTemp(today.main.temp).toFixed(1)}
+        icon={today.weather.map((p) => p.icon)}
+        // description={today.weather.map((p) => p.description)}
 
-      {weather.map((weather) => {
-        return (
-          <div className='container'>
-            
-            <div className='zone purple'>
-              <p>Time: {weather.list[0].dt_txt}</p>
-              <p>
-                {' '}
-                Temperature:{' '}
-                {temperatureConverter(weather.list[0].main.temp).toFixed(1)} °C
-                {weather.list[0].weather[0].icon}{' '}
-              </p>
-              <img src={images[`${weather.list[0].weather[0].icon}@2x.png`]} />
-            </div>
-            <div className='zone purple'>
-              <p>Time: {weather.list[1].dt_txt}</p>
-              <p>
-                {' '}
-                Temperature:{' '}
-                {temperatureConverter(weather.list[1].main.temp).toFixed(
-                  1
-                )} °C{' '}
-              </p>
-              <img src={images[`${weather.list[1].weather[0].icon}@2x.png`]} />
-            </div>
-            <div className='zone purple'>
-              <p>Time: {weather.list[2].dt_txt}</p>
-              <p>
-                {temperatureConverter(weather.list[2].main.temp).toFixed(1)} °C
-              </p>
-              <img src={images[`${weather.list[2].weather[0].icon}@2x.png`]} />
-            </div>
-            <div className='zone purple'>
-              <p>Time: {weather.list[3].dt_txt}</p>
-              <p>
-                {temperatureConverter(weather.list[3].main.temp).toFixed(1)} °C
-              </p>
-              <img src={images[`${weather.list[3].weather[0].icon}@2x.png`]} />
-            </div>
-            <button className='button' onClick={() => tomorrowWeather()}> Tomorrow weather</button>
-          </div>
-          
-        );
-      })}
+        key={today.dt}
+      />
+
+      <button className='button' onClick={() => tomorrowWeather()}>
+        Tomorrow weather
+      </button>
     </div>
   );
 };

@@ -7,7 +7,20 @@ import Weather from './Weather';
 const CountryFilter = ({ countries }) => {
   const [weather, setWeather] = useState([]);
   const [tomorrow, setTomorrow] = useState([]);
+  const [today, setToday] = useState([])
   //   const [forecast, setForecast] = useState([]);
+
+  const images = importAll(
+    require.context('./images', false, /\.(png|jpe?g|svg)$/)
+  );
+
+  function importAll(r) {
+    let images = {};
+    r.keys().map((item, index) => {
+      images[item.replace('./', '')] = r(item);
+    });
+    return images;
+  }
 
   // Fetch weather:
   const api_key = process.env.REACT_APP_API_KEY;
@@ -19,6 +32,9 @@ const CountryFilter = ({ countries }) => {
       )
       .then((response) => {
         setWeather([response.data]);
+        //let mapIt = response.data.map((p) => p)
+        // setToday([mapIt])
+        setToday(response.data.list)
         console.log('response.data.current', response.data.list.slice(0, 10));
       })
       .catch((error) => {
@@ -31,16 +47,16 @@ const CountryFilter = ({ countries }) => {
 
     let mappiLista = [];
 
-    let mappaus = weather.map((p) => {
-      console.log('p');
-      console.log('length', p.length);
+    weather.map((p) => {
+      //   console.log('p');
+      //   console.log('length', p.length);
 
       mappiLista.push(p.list);
 
       return p.list;
     });
 
-    console.log('mappaus', mappaus);
+    // console.log('mappaus', mappaus);
 
     let arrayy = [];
 
@@ -87,6 +103,10 @@ const CountryFilter = ({ countries }) => {
     console.log('arrayy', arrayy);
   };
 
+
+  //Parse temperature
+  const parseTemp = (p) => (p = parseFloat(p) - 273.15);
+
   return (
     <div>
       <h3>{countries.name}</h3>
@@ -111,20 +131,37 @@ const CountryFilter = ({ countries }) => {
 
       <h4>Weather in {countries.capital}</h4>
 
-      {weather.length > 0 ? (
-        <CountryFilterItem
-          weather={weather}
-          tomorrowWeather={tomorrowWeather}
-        />
-      ) : (
-        <ul></ul>
-      )}
+      <div className='container'>
+        {today.length > 0 ? (
+          today.map((today, i) => (
+            <CountryFilterItem
+              today={today}
+              images={images}
+            //   date={today.dt_txt}
+            date={today.dt_txt.slice(10, 13)}
+ 
+              tomorrowWeather={tomorrowWeather}
+              parseTemp={parseTemp}
+
+              key={i}
+            />
+          ))
+        ) : (
+          <ul></ul>
+        )}
+      </div>
       <br />
 
       <div className='container'>
-      {tomorrow.map((tomorrow) => (
-        <Weather tomorrow={tomorrow} date={tomorrow.dt_txt} key={tomorrow.dt}  />
-      ))}
+        {tomorrow.map((tomorrow) => (
+          <Weather
+            tomorrow={tomorrow}
+            date={tomorrow.dt_txt.slice(10, 13)}
+            images={images}
+            parseTemp={parseTemp}
+            key={tomorrow.dt}
+          />
+        ))}
       </div>
     </div>
   );
