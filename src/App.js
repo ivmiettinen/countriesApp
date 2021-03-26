@@ -21,6 +21,9 @@ function App() {
     });
   }, []);
 
+
+
+
   const handleCountryFilter = (e) => {
     setSearchTerm(e.target.value);
   };
