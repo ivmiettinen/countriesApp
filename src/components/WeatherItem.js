@@ -8,9 +8,9 @@ const WeatherItem = ({
   images,
 
 }) => {
-  console.log('Item propsit', temperature);
-  console.log('date', date)
-  console.log('icon', icon);
+  // console.log('Item propsit', temperature);
+  // console.log('date', date)
+  // console.log('icon', icon);
   // console.log('images', images)
   // console.log('milta nayttaa', `${icon}@2x.png`)
 

@@ -7,7 +7,7 @@ const Weather = ({ tomorrow, date, images, parseTemp }) => {
   // console.log('typee', typeof tomorrow);
 
   
-  console.log('images', images)
+  // console.log('images', images)
 
   return (
     <div >

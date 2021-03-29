@@ -7,7 +7,7 @@ import Weather from './Weather';
 const CountryFilter = ({ countries }) => {
   const [weather, setWeather] = useState([]);
   const [tomorrow, setTomorrow] = useState([]);
-  const [today, setToday] = useState([])
+  const [today, setToday] = useState([]);
   //   const [forecast, setForecast] = useState([]);
 
   const images = importAll(
@@ -34,7 +34,7 @@ const CountryFilter = ({ countries }) => {
         setWeather([response.data]);
         //let mapIt = response.data.map((p) => p)
         // setToday([mapIt])
-        setToday(response.data.list)
+        setToday(response.data.list);
         console.log('response.data.current', response.data.list.slice(0, 10));
       })
       .catch((error) => {
@@ -42,53 +42,61 @@ const CountryFilter = ({ countries }) => {
       });
   }, [countries.capital]);
 
+  const mapTheDays = weather.map((p) => {
+    return p.list;
+  });
+
   const tomorrowWeather = (value) => {
-    console.log(value);
+    // console.log(value);
 
-    let mappiLista = [];
+    const filteredTomorrow = [];
 
-    weather.map((p) => {
-      //   console.log('p');
-      //   console.log('length', p.length);
+    // var val = '2021-03-30';
 
-      mappiLista.push(p.list);
+    let nextDay = new Date();
 
-      return p.list;
-    });
+    // console.log('NEXTNEXT', nextDay)
 
-    // console.log('mappaus', mappaus);
+    //"2021-03-31 12:00:00"
 
-    let arrayy = [];
+    // console.log('dayday', nextDay);
+    //dayday Mon Mar 29 2021 09:47:35 GMT+0300 (Eastern European Summer Time)
+    let newString = [];
 
-    var index = -1;
-    var val = '2021-03-27';
+    let nextday = nextDay.getDate() + 1;
 
-    var filteredObj = mappiLista.filter(function(item, i) {
-      index = i;
+    let nextmonth = nextDay.getMonth() + 1;
+
+    let nextyear = nextDay.getFullYear();
+
+    newString.push(`${nextyear}-0${nextmonth}-${nextday}`);
+
+    // console.log('newString', newString.toString())
+
+    // let index = -1;
+
+    const filteredObj = mapTheDays.filter(function(item, i) {
+      // index = i;
 
       console.log('item.length', item.length);
 
       for (i = 0; i < item.length; i++) {
-        // console.log('', item)
-        // console.log('[i]', item[i])
+        let tomorrowToText = newString.toString();
 
-        // console.log('[index]', item[index])
-        // console.log('[index].dt_txt', item[index].dt_txt)
+        // console.log('TomorrowToText', tomorrowToText);
+        // console.log('item[i].dt_txt with index', item[i].dt_txt);
 
-        if (item[i].dt_txt.includes(val)) {
-          console.log(
-            'item[index].dt_txt.includes(val)',
-            item[index].dt_txt.includes(val)
-          );
-          index = i;
-          // console.log('2index', index)
-          // console.log('2item', item)
-          // console.log('3item', item[index].dt_txt)
-          arrayy.push(item[i]);
+        // console.log('typeOfText', typeof tomorrowToText)
+
+        if (item[i].dt_txt.includes(tomorrowToText)) {
+          // );
+          // index = i;
+
+          filteredTomorrow.push(item[i]);
         }
       }
 
-      setTomorrow(arrayy);
+      setTomorrow(filteredTomorrow);
     });
     // // var filteredObj = mappaus.filter(function (item, i) {
     // //     if (item.dt_txt.includes(val)) {
@@ -99,10 +107,9 @@ const CountryFilter = ({ countries }) => {
     // //     }
     // // })
 
-    console.log('filteredObj', filteredObj);
-    console.log('arrayy', arrayy);
+    // console.log('filteredObj', filteredObj);
+    // console.log('arrayy', filteredTomorrow);
   };
-
 
   //Parse temperature
   const parseTemp = (p) => (p = parseFloat(p) - 273.15);
@@ -137,12 +144,10 @@ const CountryFilter = ({ countries }) => {
             <CountryFilterItem
               today={today}
               images={images}
-            //   date={today.dt_txt}
-            date={today.dt_txt.slice(10, 13)}
- 
+              //   date={today.dt_txt}
+              date={today.dt_txt.slice(10, 13)}
               tomorrowWeather={tomorrowWeather}
               parseTemp={parseTemp}
-
               key={i}
             />
           ))
