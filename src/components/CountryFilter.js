@@ -8,6 +8,7 @@ const CountryFilter = ({ countries }) => {
   const [weather, setWeather] = useState([]);
   const [tomorrow, setTomorrow] = useState([]);
   const [today, setToday] = useState([]);
+  const [filteredToday, setFilteredToday] = useState([]);
   //   const [forecast, setForecast] = useState([]);
 
   const images = importAll(
@@ -31,29 +32,107 @@ const CountryFilter = ({ countries }) => {
         `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
       )
       .then((response) => {
+        let mapIt = [response].map((p) => p.data.list);
+
+        // console.log('mapitmapi', mapIt);
         setWeather([response.data]);
-        //let mapIt = response.data.map((p) => p)
+
         // setToday([mapIt])
         setToday(response.data.list);
-        console.log('response.data.current', response.data.list.slice(0, 10));
+        // console.log('response.data.current', response.data.list.slice(0, 10));
+
+       mapIt.filter(function(item, i) {
+          // index = i;
+
+          // console.log('item.length', item.length);
+
+          // console.log('create today', createToday());
+
+          let filteredToday = [];
+
+          for (i = 0; i < item.length; i++) {
+            // console.log('TomorrowToText', tomorrowToText);
+
+            // console.log('typeOfText', typeof tomorrowToText)
+
+            if (item[i].dt_txt.includes(createToday())) {
+              filteredToday.push(item[i]);
+            }
+       
+          }
+
+          // console.log('filteredToday', filteredToday);
+          setFilteredToday(filteredToday);
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   }, [countries.capital]);
 
+  // useEffect(() => {
+  //   mapTheDays.filter(function(item, i) {
+  //     // index = i;
+
+  //     console.log('item.length', item.length);
+
+  //     for (i = 0; i < item.length; i++) {
+  //       // console.log('TomorrowToText', tomorrowToText);
+  //       // console.log('item[i].dt_txt with index', item[i].dt_txt);
+
+  //       // console.log('typeOfText', typeof tomorrowToText)
+
+  //       if (item[i].dt_txt.includes(createToday())) {
+  //         // );
+  //         // index = i;
+
+  //         filteredToday.push(item[i]);
+  //       }
+  //     }
+  //     setToday(filteredToday);
+  //   });
+  // }, [today]);
+
   const mapTheDays = weather.map((p) => {
     return p.list;
   });
 
+  const createToday = () => {
+    const newString = [];
+
+    const nextDay = new Date();
+
+    const nextday = nextDay.getDate();
+
+    const nextmonth = nextDay.getMonth() + 1;
+
+    const nextyear = nextDay.getFullYear();
+
+    newString.push(`${nextyear}-0${nextmonth}-${nextday}`);
+
+    return newString.toString();
+  };
+
+  const createTomorrow = () => {
+    const newString = [];
+
+    const nextDay = new Date();
+
+    const nextday = nextDay.getDate() + 1;
+
+    const nextmonth = nextDay.getMonth() + 1;
+
+    const nextyear = nextDay.getFullYear();
+
+    newString.push(`${nextyear}-0${nextmonth}-${nextday}`);
+
+    return newString.toString();
+  };
+
   const tomorrowWeather = (value) => {
     // console.log(value);
 
-    const filteredTomorrow = [];
-
     // var val = '2021-03-30';
-
-    let nextDay = new Date();
 
     // console.log('NEXTNEXT', nextDay)
 
@@ -61,19 +140,12 @@ const CountryFilter = ({ countries }) => {
 
     // console.log('dayday', nextDay);
     //dayday Mon Mar 29 2021 09:47:35 GMT+0300 (Eastern European Summer Time)
-    let newString = [];
-
-    let nextday = nextDay.getDate() + 1;
-
-    let nextmonth = nextDay.getMonth() + 1;
-
-    let nextyear = nextDay.getFullYear();
-
-    newString.push(`${nextyear}-0${nextmonth}-${nextday}`);
 
     // console.log('newString', newString.toString())
 
     // let index = -1;
+
+    const filteredTomorrow = [];
 
     const filteredObj = mapTheDays.filter(function(item, i) {
       // index = i;
@@ -81,14 +153,12 @@ const CountryFilter = ({ countries }) => {
       console.log('item.length', item.length);
 
       for (i = 0; i < item.length; i++) {
-        let tomorrowToText = newString.toString();
-
         // console.log('TomorrowToText', tomorrowToText);
         // console.log('item[i].dt_txt with index', item[i].dt_txt);
 
         // console.log('typeOfText', typeof tomorrowToText)
 
-        if (item[i].dt_txt.includes(tomorrowToText)) {
+        if (item[i].dt_txt.includes(createTomorrow())) {
           // );
           // index = i;
 
@@ -117,6 +187,11 @@ const CountryFilter = ({ countries }) => {
   return (
     <div>
       <h3>{countries.name}</h3>
+      <p>
+        {/* {filteredTodayFunc.map((p) => (
+          <p>{p}</p>
+        ))} */}
+      </p>
       <p>Capital: {countries.capital}</p>
       <p>Population: {countries.population}</p>
 
@@ -139,8 +214,8 @@ const CountryFilter = ({ countries }) => {
       <h4>Weather in {countries.capital}</h4>
 
       <div className='container'>
-        {today.length > 0 ? (
-          today.map((today, i) => (
+        {filteredToday.length > 0 ? (
+          filteredToday.map((today, i) => (
             <CountryFilterItem
               today={today}
               images={images}
