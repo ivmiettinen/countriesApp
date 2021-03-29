@@ -213,6 +213,7 @@ const CountryFilter = ({ countries }) => {
 
       <h4>Weather in {countries.capital}</h4>
 
+<div>
       <div className='container'>
         {filteredToday.length > 0 ? (
           filteredToday.map((today, i) => (
@@ -229,6 +230,11 @@ const CountryFilter = ({ countries }) => {
         ) : (
           <ul></ul>
         )}
+        
+      </div>
+      <button className='button' onClick={() => tomorrowWeather()}>
+        Tomorrow weather
+      </button>
       </div>
       <br />
 
@@ -239,6 +245,7 @@ const CountryFilter = ({ countries }) => {
             date={tomorrow.dt_txt.slice(10, 13)}
             images={images}
             parseTemp={parseTemp}
+
             key={tomorrow.dt}
           />
         ))}

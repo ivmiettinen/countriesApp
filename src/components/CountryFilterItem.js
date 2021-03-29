@@ -1,23 +1,29 @@
 import React from 'react';
 import WeatherItem from './WeatherItem';
 
-const CountryFilterItem = ({ today, images, tomorrowWeather, parseTemp,date }) => {
+const CountryFilterItem = ({
+  today,
+  images,
+  tomorrowWeather,
+  parseTemp,
+  date,
+}) => {
   //   console.log('itemi:', weather.current);
 
-//   console.log('today', today);
-//   console.log(
-//     'today.main',
-//     today.map((p) => p.main.temp)
-//   );
+  //   console.log('today', today);
+  //   console.log(
+  //     'today.main',
+  //     today.map((p) => p.main.temp)
+  //   );
 
-// //   console.log('fsdjaljasdlf', today.weather.map((p) => p.icon) )  
+  // //   console.log('fsdjaljasdlf', today.weather.map((p) => p.icon) )
 
-//   console.log('iconii', icon)
+  //   console.log('iconii', icon)
 
-//   console.log(
-//     'ikoni',
-//     today.weather.map((p) => p.icon)
-//   );
+  //   console.log(
+  //     'ikoni',
+  //     today.weather.map((p) => p.icon)
+  //   );
   //   console.log('imagesX', images);
   //   console.log(
   //     'date',
@@ -35,14 +41,11 @@ const CountryFilterItem = ({ today, images, tomorrowWeather, parseTemp,date }) =
         images={images}
         temperature={parseTemp(today.main.temp).toFixed(1)}
         icon={today.weather.map((p) => p.icon)}
-        // description={today.weather.map((p) => p.description)}
-
+        description={today.weather.map((p) => p.description)}
         key={today.dt}
       />
 
-      <button className='button' onClick={() => tomorrowWeather()}>
-        Tomorrow weather
-      </button>
+      
     </div>
   );
 };
