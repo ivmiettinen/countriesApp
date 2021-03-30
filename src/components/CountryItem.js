@@ -1,8 +1,13 @@
 import React from 'react'
 
-const CountryItem = ({ name, capital, population, flag, languages, countries }) => {
-    console.log('langaln', languages)
-    console.log('counttttttries', countries)
+const CountryItem = ({
+    name,
+    capital,
+    population,
+    flag,
+    languages,
+    countries,
+}) => {
 
     if (languages !== undefined) {
         return (

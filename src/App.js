@@ -36,17 +36,15 @@ function App() {
     const onKeyDownFunc = (e) => {
         // console.log('onKeyDownFunc key', e.keyCode);
 
-
         if (e.keyCode === 8 && results.length <= 10 && results.length > 1) {
             setSearchTerm(e.target.value)
             setShowall(!showAll)
 
             setoneButtonCountry([])
             setOnlyOneCountry([])
-        }
-        else{
-          setSearchTerm(e.target.value)
-          setShowall(true)
+        } else {
+            setSearchTerm(e.target.value)
+            setShowall(true)
         }
     }
 
@@ -58,8 +56,6 @@ function App() {
         const userPickNation = results.find(
             ({ name }) => name === e.target.value
         )
-
-        console.log('AAAAAA', userPickNation)
 
         setOnlyOneCountry(onlyOneCountry.concat(userPickNation))
 
@@ -97,8 +93,6 @@ function App() {
             </div>
         )
     }
-
-    console.log('results', results.length)
 
     if (results.length <= 10 && results.length > 1) {
         return (
@@ -147,13 +141,13 @@ function App() {
                         <div>
                             {onlyOneCountry.map((countries) => (
                                 <CountryItem
-                                countries={countries}
-                                name={countries.name}
-                                capital={countries.capital}
-                                population={countries.population}
-                                flag={countries.flag}
-                                languages={countries.languages}
-                                key={countries.numericCode}
+                                    countries={countries}
+                                    name={countries.name}
+                                    capital={countries.capital}
+                                    population={countries.population}
+                                    flag={countries.flag}
+                                    languages={countries.languages}
+                                    key={countries.numericCode}
                                 />
                             ))}
                             {onlyOneCountry.map((countries) => (
@@ -206,20 +200,20 @@ function App() {
     }
 
     if (results.length === 0) {
-      return (
-          <div>
-              Find countries:
-              <input
-                  autoFocus='autofocus'
-                  value={searchTerm}
-                  onChange={handleCountryFilter}
-                  placeholder='search countries'
-                  onKeyDown={onKeyDownFunc}
-              ></input>
-              <p>No matches. Check your spelling.</p>
-          </div>
-      )
-  }
+        return (
+            <div>
+                Find countries:
+                <input
+                    autoFocus='autofocus'
+                    value={searchTerm}
+                    onChange={handleCountryFilter}
+                    placeholder='search countries'
+                    onKeyDown={onKeyDownFunc}
+                ></input>
+                <p>No matches. Check your spelling.</p>
+            </div>
+        )
+    }
 
     return (
         <div>
