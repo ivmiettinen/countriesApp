@@ -28,7 +28,7 @@ function App() {
 
     const handleCountryFilter2 = (e) => {
         setSearchTerm(e.target.value)
-        setShowall(!showAll)
+        setShowall(true)
         setoneButtonCountry([])
         setOnlyOneCountry([])
     }
@@ -36,12 +36,17 @@ function App() {
     const onKeyDownFunc = (e) => {
         // console.log('onKeyDownFunc key', e.keyCode);
 
-        if (e.keyCode === 8) {
+
+        if (e.keyCode === 8 && results.length <= 10 && results.length > 1) {
             setSearchTerm(e.target.value)
             setShowall(!showAll)
 
             setoneButtonCountry([])
             setOnlyOneCountry([])
+        }
+        else{
+          setSearchTerm(e.target.value)
+          setShowall(true)
         }
     }
 
@@ -93,6 +98,8 @@ function App() {
         )
     }
 
+    console.log('results', results.length)
+
     if (results.length <= 10 && results.length > 1) {
         return (
             <>
@@ -127,6 +134,16 @@ function App() {
                             placeholder='search countries'
                             onKeyDown={onKeyDownFunc}
                         ></input>
+                        {/* <div>
+                            {results.map((countries) => (
+                                <ButtonCountry
+                                    buttoni={buttoni}
+                                    handleClick={oneCountry}
+                                    countries={countries}
+                                    key={countries.numericCode}
+                                />
+                            ))}
+                        </div> */}
                         <div>
                             {onlyOneCountry.map((countries) => (
                                 <CountryItem
@@ -187,6 +204,22 @@ function App() {
             </div>
         )
     }
+
+    if (results.length === 0) {
+      return (
+          <div>
+              Find countries:
+              <input
+                  autoFocus='autofocus'
+                  value={searchTerm}
+                  onChange={handleCountryFilter}
+                  placeholder='search countries'
+                  onKeyDown={onKeyDownFunc}
+              ></input>
+              <p>No matches. Check your spelling.</p>
+          </div>
+      )
+  }
 
     return (
         <div>
