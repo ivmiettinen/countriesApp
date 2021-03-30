@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CountriesFilter = (props) => {
+const ButtonCountry = (props) => {
 
 
   return (
@@ -13,4 +13,4 @@ const CountriesFilter = (props) => {
   );
 };
 
-export default CountriesFilter;
+export default ButtonCountry;

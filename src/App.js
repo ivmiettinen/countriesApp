@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CountriesFilter from './components/CountriesFilter';
-import CountryFilter from './components/CountryFilter';
+import ButtonCountry from './components/ButtonCountry';
+import WeatherFilter from './components/WeatherFilter';
 
 import './App.css';
 
@@ -111,7 +111,7 @@ function App() {
             ></input>
             <div>
               {results.map((countries) => (
-                <CountriesFilter
+                <ButtonCountry
                   buttoni={buttoni}
                   handleClick={oneCountry}
                   countries={countries}
@@ -132,7 +132,7 @@ function App() {
             ></input>
             <div>
               {onlyOneCountry.map((countries) => (
-                <CountryFilter
+                <WeatherFilter
                   countries={countries}
                   key={countries.numericCode}
                 />
@@ -158,7 +158,7 @@ function App() {
         ></input>
         <div>
           {results.map((countries) => (
-            <CountryFilter countries={countries} key={countries.numericCode} />
+            <WeatherFilter countries={countries} key={countries.numericCode} />
           ))}
         </div>
         <button onClick={handleCountryFilter2}>Go back</button>
@@ -179,7 +179,7 @@ function App() {
       <h3>Countries</h3>
       <div>
         {results.map((countries) => (
-          <CountriesFilter
+          <ButtonCountry
             countries={countries}
             languages={countries.languages}
             key={countries.numericCode}

@@ -1,7 +1,7 @@
 import React from 'react';
 import WeatherItem from './WeatherItem';
 
-const CountryFilterItem = ({
+const WeatherFilterItem = ({
   today,
   images,
   tomorrowWeather,
@@ -50,4 +50,4 @@ const CountryFilterItem = ({
   );
 };
 
-export default CountryFilterItem;
+export default WeatherFilterItem;
