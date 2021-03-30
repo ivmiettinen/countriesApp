@@ -29,8 +29,12 @@ body {
     transition: all 0.3s linear;
 }
 
+.flagPicture{
+  max-width: 160px;
+}
+
 .img{
-  max-width: 70px;
+  max-width: 60px;
 }
 
 .button{

@@ -8,7 +8,7 @@ const ButtonCountry = (props) => {
     <p>
       {props.countries.name}
       <button onClick={props.handleClick} value={props.countries.name}>
-        Klikkaa
+        Pick
       </button>
     </p>
   );

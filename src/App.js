@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ButtonCountry from './components/ButtonCountry'
 import WeatherFilter from './components/WeatherFilter'
-import Country from './components/Country'
+import CountryItem from './components/CountryItem'
 
 import './App.css'
 
@@ -53,6 +53,8 @@ function App() {
         const userPickNation = results.find(
             ({ name }) => name === e.target.value
         )
+
+        console.log('AAAAAA', userPickNation)
 
         setOnlyOneCountry(onlyOneCountry.concat(userPickNation))
 
@@ -127,9 +129,14 @@ function App() {
                         ></input>
                         <div>
                             {onlyOneCountry.map((countries) => (
-                                <Country
-                                    countries={countries}
-                                    key={countries.numericCode}
+                                <CountryItem
+                                countries={countries}
+                                name={countries.name}
+                                capital={countries.capital}
+                                population={countries.population}
+                                flag={countries.flag}
+                                languages={countries.languages}
+                                key={countries.numericCode}
                                 />
                             ))}
                             {onlyOneCountry.map((countries) => (
@@ -157,9 +164,9 @@ function App() {
                     placeholder='search countries'
                     onKeyDown={onKeyDownFunc}
                 ></input>
-                <div>
+                <div className='container2'>
                     {results.map((countries) => (
-                        <Country
+                        <CountryItem
                             countries={countries}
                             name={countries.name}
                             capital={countries.capital}
