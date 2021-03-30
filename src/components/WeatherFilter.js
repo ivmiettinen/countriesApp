@@ -106,33 +106,6 @@ const WeatherFilter = ({ countries }) => {
 
     return (
         <div>
-            <h3>{countries.name}</h3>
-            <p>
-                {/* {filteredTodayFunc.map((p) => (
-          <p>{p}</p>
-        ))} */}
-            </p>
-            <p>Capital: {countries.capital}</p>
-            <p>Population: {countries.population}</p>
-
-            <h4>Languages:</h4>
-
-            {countries.languages.map((param) => {
-                return <li key={param.iso639_1}>{param.name}</li>
-            })}
-
-            <img
-                className='flagPicture'
-                src={countries.flag}
-                alt='Country flag'
-            ></img>
-
-            {/* {weather.map(weather => (
-        <CountryFilterItem weather={weather} key={weather.location} />
-      ))} */}
-
-            <h4>Weather in {countries.capital}</h4>
-
             <div>
                 <div className='container'>
                     {filteredToday.length > 0 ? (

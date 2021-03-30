@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ButtonCountry = (props) => {
+  console.log('propseja', props)
 
 
   return (
