@@ -3,8 +3,12 @@ import axios from 'axios'
 import WeatherFilterItem from './WeatherFilterItem'
 import '../App.css'
 import Weather from './Weather'
-import { createTomorrow } from './createDays'
-import { createToday } from './createDays'
+import { createTomorrow } from './weatherHelpers/createDays'
+import { createToday } from './weatherHelpers/createDays'
+
+import {images} from './weatherHelpers/images'
+
+
 
 const WeatherFilter = ({ countries }) => {
     const [weather, setWeather] = useState([])
@@ -13,17 +17,6 @@ const WeatherFilter = ({ countries }) => {
     const [filteredToday, setFilteredToday] = useState([])
     //   const [forecast, setForecast] = useState([]);
 
-    const images = importAll(
-        require.context('./images', false, /\.(png|jpe?g|svg)$/)
-    )
-
-    function importAll(r) {
-        let images = {}
-        r.keys().map((item, index) => {
-            images[item.replace('./', '')] = r(item)
-        })
-        return images
-    }
 
     // Fetch weather:
     const api_key = process.env.REACT_APP_API_KEY
