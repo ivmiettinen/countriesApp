@@ -147,6 +147,7 @@ function App() {
                                     population={countries.population}
                                     flag={countries.flag}
                                     languages={countries.languages}
+                                    currency={countries.currencies}
                                     key={countries.numericCode}
                                 />
                             ))}
@@ -184,6 +185,7 @@ function App() {
                             population={countries.population}
                             flag={countries.flag}
                             languages={countries.languages}
+                            currency={countries.currencies}
                             key={countries.numericCode}
                         />
                     ))}

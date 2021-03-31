@@ -6,9 +6,7 @@ import Weather from './Weather'
 import { createTomorrow } from './weatherHelpers/createDays'
 import { createToday } from './weatherHelpers/createDays'
 
-import {images} from './weatherHelpers/images'
-
-
+import { images } from './weatherHelpers/images'
 
 const WeatherFilter = ({ countries }) => {
     const [weather, setWeather] = useState([])
@@ -16,7 +14,6 @@ const WeatherFilter = ({ countries }) => {
     const [today, setToday] = useState([])
     const [filteredToday, setFilteredToday] = useState([])
     //   const [forecast, setForecast] = useState([]);
-
 
     // Fetch weather:
     const api_key = process.env.REACT_APP_API_KEY
@@ -64,35 +61,32 @@ const WeatherFilter = ({ countries }) => {
             })
     }, [countries.capital])
 
-    const mapTheDays = weather.map((p) => {
-        return p.list
-    })
-
     const tomorrowWeather = (value) => {
         const filteredTomorrow = []
 
-        mapTheDays.filter(function (item, i) {
-            // index = i;
+        weather
+            .map((p) => p.list)
+            .filter(function (item, i) {
+                // index = i;
 
-            console.log('item.length', item.length)
+                // console.log('item.length', item.length)
 
-            for (i = 0; i < item.length; i++) {
-                // console.log('TomorrowToText', tomorrowToText);
-                console.log('item[i].dt_txt with index', item[i].dt_txt)
+                for (i = 0; i < item.length; i++) {
+                    // console.log('TomorrowToText', tomorrowToText);
+                    // console.log('item[i].dt_txt with index', item[i].dt_txt)
 
-                console.log('typeOfText', typeof tomorrowToText)
+                    // console.log('typeOfText', typeof tomorrowToText)
 
-                if (item[i].dt_txt.includes(createTomorrow())) {
-                    // );
-                    // index = i;
+                    if (item[i].dt_txt.includes(createTomorrow())) {
+                        // );
+                        // index = i;
 
-                    filteredTomorrow.push(item[i])
+                        filteredTomorrow.push(item[i])
+                    }
                 }
-            }
 
-            console.log('ADASDASD', filteredTomorrow)
-            setTomorrow(filteredTomorrow)
-        })
+                setTomorrow(filteredTomorrow)
+            })
     }
 
     //Parse temperature
