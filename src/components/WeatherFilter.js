@@ -90,6 +90,7 @@ const WeatherFilter = ({ countries }) => {
                 }
             }
 
+            console.log('ADASDASD', filteredTomorrow)
             setTomorrow(filteredTomorrow)
         })
     }
