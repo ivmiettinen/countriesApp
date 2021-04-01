@@ -82,7 +82,7 @@ function App() {
         return (
             <div>
                 <div className='findCountries'>
-                    <p className='countryApp'>Country App</p>
+                    <div className='countryApp'>Country App</div>
                     <div>
                         <input
                             size='16'
@@ -131,7 +131,7 @@ function App() {
                     </div>
                 ) : (
                     <div className='findCountries'>
-                        <p className='countryApp'>Country App</p>
+                        <div className='countryApp'>Country App</div>
                         <div>
                             Find countries:{' '}
                             <div>
@@ -179,7 +179,7 @@ function App() {
     if (results.length === 1) {
         return (
             <div className='findCountries'>
-                <p className='countryApp'>Country App</p>
+                <div className='countryApp'>Country App</div>
                 Find countries:{' '}
                 <div>
                     <input
