@@ -205,39 +205,8 @@ text-align: center;
 
 .purple {
     background: #a88beb; /* Old browsers */
-    background: -moz-linear-gradient(
-        top,
-        #a88beb 0%,
-        #f1a7f1 44%,
-        #f8ceec 100%
-    ); /* FF3.6+ */
-    background: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0%, #a88beb),
-        color-stop(44%, #f1a7f1),
-        color-stop(100%, #f8ceec)
-    ); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(
-        top,
-        #a88beb 0%,
-        #f1a7f1 44%,
-        #f8ceec 100%
-    ); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(
-        top,
-        #a88beb 0%,
-        #f1a7f1 44%,
-        #f8ceec 100%
-    ); /* Opera 11.10+ */
-    background: -ms-linear-gradient(
-        top,
-        #a88beb 0%,
-        #f1a7f1 44%,
-        #f8ceec 100%
-    ); /* IE10+ */
-    background: linear-gradient(
+    
+    background: radial-gradient(
         top,
         #a88beb 0%,
         #f1a7f1 44%,

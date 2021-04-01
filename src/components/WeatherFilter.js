@@ -11,14 +11,14 @@ import { images } from './weatherHelpers/images'
 const WeatherFilter = ({ countries }) => {
     const [weather, setWeather] = useState([])
     const [tomorrow, setTomorrow] = useState([])
-    const [today, setToday] = useState([])
     const [filteredToday, setFilteredToday] = useState([])
     //   const [forecast, setForecast] = useState([]);
 
     // Fetch weather:
-    const api_key = process.env.REACT_APP_API_KEY
+  
 
     useEffect(() => {
+        const api_key = process.env.REACT_APP_API_KEY
         axios
             .get(
                 `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
@@ -29,8 +29,6 @@ const WeatherFilter = ({ countries }) => {
                 // console.log('mapitmapi', mapIt);
                 setWeather([response.data])
 
-                // setToday([mapIt])
-                setToday(response.data.list)
                 // console.log('response.data.current', response.data.list.slice(0, 10));
 
                 mapIt.filter(function (item, i) {
@@ -53,7 +51,7 @@ const WeatherFilter = ({ countries }) => {
                     }
 
                     // console.log('filteredToday', filteredToday);
-                    setFilteredToday(filteredToday)
+                    return setFilteredToday(filteredToday)
                 })
             })
             .catch((error) => {
@@ -85,7 +83,7 @@ const WeatherFilter = ({ countries }) => {
                     }
                 }
 
-                setTomorrow(filteredTomorrow)
+                return setTomorrow(filteredTomorrow)
             })
     }
 

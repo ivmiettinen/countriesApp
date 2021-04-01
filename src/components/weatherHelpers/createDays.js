@@ -1,3 +1,16 @@
+export const createToday = (e) => {
+    const today = new Date()
+
+    const TodayDateString =
+        today.getFullYear() +
+        '-' +
+        ('0' + (today.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('0' + today.getDate()).slice(-2)
+
+    return TodayDateString
+}
+
 export const createTomorrow = (e) => {
     const today = new Date()
 
@@ -12,23 +25,5 @@ export const createTomorrow = (e) => {
         '-' +
         ('0' + tomorrow.getDate()).slice(-2)
 
-    // console.log('Tomorrow', TomorrowDateString)
-
     return TomorrowDateString
-}
-
-export const createToday = () => {
-    const newString = []
-
-    const nextDay = new Date()
-
-    const nextday = nextDay.getDate()
-
-    const nextmonth = nextDay.getMonth() + 1
-
-    const nextyear = nextDay.getFullYear()
-
-    newString.push(`${nextyear}-0${nextmonth}-${nextday}`)
-
-    return newString.toString()
 }
