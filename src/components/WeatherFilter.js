@@ -3,8 +3,12 @@ import axios from 'axios'
 import WeatherFilterItem from './WeatherFilterItem'
 import '../App.css'
 import Weather from './Weather'
-import { createTomorrow } from './weatherHelpers/createDays'
-import { createToday } from './weatherHelpers/createDays'
+import {
+    createToday,
+    createTomorrow,
+    dayName,
+    tomorrowDayName,
+} from './weatherHelpers/createDays'
 
 import { images } from './weatherHelpers/images'
 
@@ -15,7 +19,6 @@ const WeatherFilter = ({ countries }) => {
     //   const [forecast, setForecast] = useState([]);
 
     // Fetch weather:
-  
 
     useEffect(() => {
         const api_key = process.env.REACT_APP_API_KEY
@@ -90,13 +93,20 @@ const WeatherFilter = ({ countries }) => {
     //Parse temperature
     const parseTemp = (p) => (p = parseFloat(p) - 273.15)
 
+   
+
     return (
         <div>
             <div>
-            <h4 className='weatherFilterh4'>Todays weather in {countries.capital}:</h4>
-  
+            <button className='button' onClick={() => tomorrowWeather()}>
+                    Tomorrow weather
+                </button>
+                <h4 className='weatherFilterh4'>
+                    Weather in {countries.capital}:
+                </h4>
+
                 <div className='container'>
-                
+                    <div className='containerHeader'>{dayName()}</div>
                     {filteredToday.length > 0 ? (
                         filteredToday.map((today, i) => (
                             <WeatherFilterItem
@@ -113,13 +123,12 @@ const WeatherFilter = ({ countries }) => {
                         <ul></ul>
                     )}
                 </div>
-                <button className='button' onClick={() => tomorrowWeather()}>
-                    Tomorrow weather
-                </button>
+                
             </div>
-            <br />
+           
 
             <div className='container'>
+                <div className='containerHeader'>{tomorrowDayName()}</div>
                 {tomorrow.map((tomorrow) => (
                     <Weather
                         tomorrow={tomorrow}
@@ -130,7 +139,10 @@ const WeatherFilter = ({ countries }) => {
                     />
                 ))}
             </div>
+            
         </div>
+
+        
     )
 }
 

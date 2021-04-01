@@ -34,7 +34,6 @@ responsive tables using li:
     -webkit-box-pack: justify;
     justify-content: space-between;
     -webkit-box-align: center;
-    
 }
 
 .container2 {
@@ -60,92 +59,125 @@ responsive tables using li:
     border-radius: 5px;
     background: hsla(0, 0%, 100%, 0.7);
     text-align: center;
- 
+
     text-align: center;
     flex-wrap: wrap;
-    
+
     font-size: 1vw;
-    font-size:  16px;
+    font-size: 16px;
     /*not responsive yet */
 }
 
-.container {
-   /*31.3.Tahan jait */
-  /* display: inline-flex; */
-  
-  display: grid;
-  grid-gap: 1px;
-  grid-template-columns: auto auto auto auto auto auto auto auto ;
-  grid-auto-rows: min-content;
-  margin: 1rem;
-  border-radius: 0.5rem;
-  border: 5px blueviolet;
-  padding: 1rem;
-  flex-wrap: wrap;
-  justify-content:  center   ;
-  font-size: 1vw;
-  
+.containerHeader {
+
+    
+    grid-area: header;
+    background-color: rgba(168, 139, 235, 0.2);
+
+
+    border-radius: 5px;
+    border: 1px solid #bbb;
+
+
+
 }
 
-.weatherFilterh4{
+.container {
+    /*31.3.Tahan jait */
+    /* display: inline-flex; */
+    display: grid;
+    grid-template-rows: auto;
+    
+    grid-gap: 1px;
+    /* grid-template-columns: repeat(auto-fill); */
+    grid-auto-rows: min-content;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    border: 5px blueviolet;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: left;
+    font-size: 1vw;
+
+    /* */
+    float:left;
+    grid-template-areas: 
+    "header header header header header header header header"
+    "main main main main main main main main "
+    "footer footer footer footer footer footer footer footer";
+}
+
+
+/* .aaa{width: 100%}
+
+.bbbb{float:left; width: 80%}
+
+.cccc{float:right;} */
+
+
+.zone {
+    /* cursor: pointer; */
+    /*display:inline-block;*/
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    transition: all 0.3s linear;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-area: main;
+}
+
+
+.weatherFilterh4 {
     font-size: 1vw;
 }
 
-
 @media only screen and (max-device-width: 420px) {
-  .countryItemTable {
-    padding: 10px;
-    margin: 0.5rem;
-    border-radius: 5px;
-    background: hsla(0, 0%, 100%, 0.7);
-    text-align: center;
- 
+    .countryItemTable {
+        padding: 10px;
+        margin: 0.5rem;
+        border-radius: 5px;
+        background: hsla(0, 0%, 100%, 0.7);
+        text-align: center;
 
-    flex-wrap: wrap;
+        flex-wrap: wrap;
 
-    grid-gap: 1px;
-    grid-template-columns: 1fr ;
-    margin-left: auto;
-    margin-right: auto;
+        grid-gap: 1px;
+        grid-template-columns: 1fr;
+        margin-left: auto;
+        margin-right: auto;
 
-    font-size: 12px;
-    
-   
-}}
+        font-size: 12px;
+    }
+}
 @media only screen and (max-device-width: 300px) {
-  .countryItemTable {
-    padding: 10px;
-    margin: 0.5rem;
-    border-radius: 5px;
-    background: hsla(0, 0%, 100%, 0.7);
-    text-align: center;
- 
+    .countryItemTable {
+        padding: 10px;
+        margin: 0.5rem;
+        border-radius: 5px;
+        background: hsla(0, 0%, 100%, 0.7);
+        text-align: center;
 
-    flex-wrap: wrap;
+        flex-wrap: wrap;
 
-    grid-gap: 1px;
-    grid-template-columns: 1fr ;
-    margin-left: auto;
-    margin-right: auto;
+        grid-gap: 1px;
+        grid-template-columns: 1fr;
+        margin-left: auto;
+        margin-right: auto;
 
-    font-size:  8px;
-    
- 
-   
-
-
-
-}
-.container {
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: 1fr 1fr ;
-  margin: 1rem;
-  border-radius: 0.5rem;
-  border: 5px blueviolet;
-  padding: 1rem;
-  flex-wrap: wrap;
-}
+        font-size: 8px;
+    }
+    .container {
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: 1fr 1fr;
+        margin: 1rem;
+        border-radius: 0.5rem;
+        border: 5px blueviolet;
+        padding: 1rem;
+        flex-wrap: wrap;
+    }
 }
 
 .countryItemTable,
@@ -156,6 +188,7 @@ responsive tables using li:
 
 .findCountries {
     text-align: center;
+    display: grid;
 }
 
 /* .countryTr{
@@ -170,11 +203,8 @@ text-align: center;
 
 */
 
-
 /* countries */
 .CountryItemHeader {
-
-
     text-align: center;
     font-weight: 700;
 
@@ -182,17 +212,7 @@ text-align: center;
     font-size: 2vw;
 }
 
-.zone {
-    /* cursor: pointer; */
-    /*display:inline-block;*/
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid #bbb;
-    transition: all 0.3s linear;
-    margin-left: auto;
-    margin-right: auto;
-    margin: 10px;
-}
+
 
 /* .flagPicture {
   width: 60%;
@@ -211,16 +231,15 @@ text-align: center;
 
     max-height: 100px;
     margin: 10px;
- 
+
     border: 25px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-
 /*fixaa: */
-.weatherItemPic >  img {
+.weatherItemPic > img {
     max-width: 50px;
 }
 /* */
@@ -229,8 +248,8 @@ text-align: center;
 }
 
 .purple {
-    background: #a88beb; /* Old browsers */
-    
+    background: rgba(168, 139, 235, 0.2); /* Old browsers */
+
     background: radial-gradient(
         top,
         #a88beb 0%,

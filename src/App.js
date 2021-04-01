@@ -83,14 +83,16 @@ function App() {
             <div>
                 <div className='findCountries'>
                     <p className='countryApp'>Country App</p>
-
-                    <input
-                        autoFocus='autofocus'
-                        value={searchTerm}
-                        onChange={handleCountryFilter}
-                        placeholder='Enter the country...'
-                        onKeyDown={onKeyDownFunc}
-                    ></input>
+                    <div>
+                        <input
+                            size='16'
+                            autoFocus='autofocus'
+                            value={searchTerm}
+                            onChange={handleCountryFilter}
+                            placeholder='Enter the country...'
+                            onKeyDown={onKeyDownFunc}
+                        ></input>
+                    </div>
                     <p>Too many matches, specify another filter</p>
                 </div>
             </div>
@@ -104,14 +106,17 @@ function App() {
                     <div className='findCountries'>
                         <div className='countryApp'>Country App</div>
                         <div>
-                            Find countries:{' '}
-                            <input
-                                autoFocus='autofocus'
-                                value={searchTerm}
-                                onChange={handleCountryFilter}
-                                placeholder='search countries'
-                                onKeyDown={onKeyDownFunc}
-                            ></input>
+                            <div>
+                                Find countries:{' '}
+                                <input
+                                    size='16'
+                                    autoFocus='autofocus'
+                                    value={searchTerm}
+                                    onChange={handleCountryFilter}
+                                    placeholder='search countries'
+                                    onKeyDown={onKeyDownFunc}
+                                ></input>
+                            </div>
                             <div>
                                 {results.map((countries) => (
                                     <ButtonCountry
@@ -129,13 +134,16 @@ function App() {
                         <p className='countryApp'>Country App</p>
                         <div>
                             Find countries:{' '}
-                            <input
-                                autoFocus='autofocus'
-                                value={searchTerm}
-                                onChange={handleCountryFilter}
-                                placeholder='search countries'
-                                onKeyDown={onKeyDownFunc}
-                            ></input>
+                            <div>
+                                <input
+                                    size='16'
+                                    autoFocus='autofocus'
+                                    value={searchTerm}
+                                    onChange={handleCountryFilter}
+                                    placeholder='search countries'
+                                    onKeyDown={onKeyDownFunc}
+                                ></input>
+                            </div>
                             <div>
                                 {onlyOneCountry.map((countries) => (
                                     <CountryItem
@@ -156,9 +164,11 @@ function App() {
                                     />
                                 ))}
                             </div>
+                            <div>
                             <button onClick={handleCountryFilter2}>
                                 Go back
                             </button>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -170,38 +180,41 @@ function App() {
         return (
             <div className='findCountries'>
                 <p className='countryApp'>Country App</p>
+                Find countries:{' '}
                 <div>
-                    Find countries:{' '}
                     <input
+                        size='16'
                         autoFocus='autofocus'
                         value={searchTerm}
                         onChange={handleCountryFilter}
                         placeholder='search countries'
                         onKeyDown={onKeyDownFunc}
                     ></input>
-                    <div className='container2'>
-                        {results.map((countries) => (
-                            <CountryItem
-                                countries={countries}
-                                name={countries.name}
-                                capital={countries.capital}
-                                population={countries.population}
-                                flag={countries.flag}
-                                languages={countries.languages}
-                                currency={countries.currencies}
-                                key={countries.numericCode}
-                            />
-                        ))}
-                    </div>
-                    <div>
-                        {results.map((countries) => (
-                            <WeatherFilter
-                                countries={countries}
-                                key={countries.numericCode}
-                            />
-                        ))}
-                    </div>
-                    <button onClick={handleCountryFilter2}>Go back</button>
+                </div>
+                <div className='container2'>
+                    {results.map((countries) => (
+                        <CountryItem
+                            countries={countries}
+                            name={countries.name}
+                            capital={countries.capital}
+                            population={countries.population}
+                            flag={countries.flag}
+                            languages={countries.languages}
+                            currency={countries.currencies}
+                            key={countries.numericCode}
+                        />
+                    ))}
+                </div>
+                <div>
+                    {results.map((countries) => (
+                        <WeatherFilter
+                            countries={countries}
+                            key={countries.numericCode}
+                        />
+                    ))}
+                </div>
+                <div>
+                <button onClick={handleCountryFilter2}>Go back</button>
                 </div>
             </div>
         )
@@ -211,13 +224,16 @@ function App() {
         return (
             <div>
                 Find countries:
-                <input
-                    autoFocus='autofocus'
-                    value={searchTerm}
-                    onChange={handleCountryFilter}
-                    placeholder='search countries'
-                    onKeyDown={onKeyDownFunc}
-                ></input>
+                <div>
+                    <input
+                        size='16'
+                        autoFocus='autofocus'
+                        value={searchTerm}
+                        onChange={handleCountryFilter}
+                        placeholder='search countries'
+                        onKeyDown={onKeyDownFunc}
+                    ></input>
+                </div>
                 <p>No matches. Check your spelling.</p>
             </div>
         )
@@ -227,6 +243,7 @@ function App() {
         <div>
             Find countries:{' '}
             <input
+                size='10'
                 autoFocus='autofocus'
                 value={searchTerm}
                 onChange={handleCountryFilter}
