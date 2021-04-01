@@ -19,7 +19,7 @@ const WeatherItem = ({
                     <th>{temperature}°c</th>
                 </tr>
                 <tr>
-                    <th>
+                    <th className='weatherItemPic'>
                         <img
                             className='img'
                             src={images[`${icon}@2x.png`]}

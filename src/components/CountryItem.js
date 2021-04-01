@@ -29,13 +29,13 @@ const CountryItem = ({
                   
                         
                     </h2>
-                    <p>
+                   
                     <img
                             className='flagPicture'
                             src={flag}
                             alt='Country flag'
                         ></img>
-                       </p>
+                    
                     <table className='countryItemTable'>
                         <thead className='countryThead'>
                             <tr  className='countryTr'>

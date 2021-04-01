@@ -93,7 +93,10 @@ const WeatherFilter = ({ countries }) => {
     return (
         <div>
             <div>
+            <h4 className='weatherFilterh4'>Todays weather in {countries.capital}:</h4>
+  
                 <div className='container'>
+                
                     {filteredToday.length > 0 ? (
                         filteredToday.map((today, i) => (
                             <WeatherFilterItem
