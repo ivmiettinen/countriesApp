@@ -98,7 +98,7 @@ const WeatherFilter = ({ countries }) => {
     return (
         <div>
             <div>
-            <button className='button' onClick={() => tomorrowWeather()}>
+            <button className='tomorrowWeather' onClick={() => tomorrowWeather()}>
                     Tomorrow weather
                 </button>
                 <h4 className='weatherFilterh4'>

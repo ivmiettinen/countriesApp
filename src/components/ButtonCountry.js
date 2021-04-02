@@ -6,7 +6,7 @@ const ButtonCountry = (props) => {
     return (
         <p>
             {props.countries.name}
-            <button onClick={props.handleClick} value={props.countries.name}>
+            <button className='pick-btn' onClick={props.handleClick} value={props.countries.name}>
                 Pick
             </button>
         </p>

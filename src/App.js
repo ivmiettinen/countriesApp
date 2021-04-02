@@ -165,7 +165,7 @@ function App() {
                                 ))}
                             </div>
                             <div>
-                            <button onClick={handleCountryFilter2}>
+                            <button  onClick={handleCountryFilter2}>
                                 Go back
                             </button>
                             </div>
