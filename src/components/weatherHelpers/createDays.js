@@ -16,7 +16,22 @@ export const createTomorrow = (e) => {
 
     tomorrow.setDate(tomorrow.getDate() + 1)
 
-    const TomorrowDateString =
+    const createTomorrowString =
+        tomorrow.getFullYear() +
+        '-' +
+        ('0' + (tomorrow.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('0' + tomorrow.getDate()).slice(-2)
+
+    return createTomorrowString
+}
+
+export const createDayAfterTomorrow = () => {
+    const tomorrow = new Date(today)
+
+    tomorrow.setDate(tomorrow.getDate() + 2)
+
+    const dayAfterTomorrowString =
         tomorrow.getFullYear() +
         '-' +
         ('0' + (tomorrow.getMonth() + 1)).slice(-2) +
@@ -24,39 +39,35 @@ export const createTomorrow = (e) => {
         ('0' + tomorrow.getDate()).slice(-2)
 
     //
-    dayName()
 
-    return TomorrowDateString
+    return dayAfterTomorrowString
 }
 
-export const dayName = () => {
-    const days = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-    ]
+const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+]
 
+export const dayName = () => {
     const dayName = days[today.getDay()]
 
     return dayName
 }
 
 export const tomorrowDayName = () => {
-    const days = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-    ]
-
     const dayName = days[today.getDay() + 1]
+
+    return dayName
+}
+export const dayAfterTomorrowName = () => {
+    const dayName = days[today.getDay() + 2]
+
+    console.log('dayName', dayName)
 
     return dayName
 }

@@ -6,16 +6,19 @@ import Weather from './Weather'
 import {
     createToday,
     createTomorrow,
+    createDayAfterTomorrow,
     dayName,
     tomorrowDayName,
+    dayAfterTomorrowName,
 } from './weatherHelpers/createDays'
 
 import { images } from './weatherHelpers/images'
 
 const WeatherFilter = ({ countries }) => {
     const [weather, setWeather] = useState([])
-    const [tomorrow, setTomorrow] = useState([])
     const [filteredToday, setFilteredToday] = useState([])
+    const [tomorrow, setTomorrow] = useState([])
+    const [DayAfterTomorrow, setDayAfterTomorrow] = useState([])
     //   const [forecast, setForecast] = useState([]);
 
     // Fetch weather:
@@ -89,17 +92,51 @@ const WeatherFilter = ({ countries }) => {
                 return setTomorrow(filteredTomorrow)
             })
     }
+    const dayAfterTomorrowWeather = (value) => {
+        const FilteredDayAfterTomorrowWeather = []
+
+        weather
+            .map((p) => p.list)
+            .filter(function (item, i) {
+                // index = i;
+
+                // console.log('item.length', item.length)
+
+                for (i = 0; i < item.length; i++) {
+                    // console.log('TomorrowToText', tomorrowToText);
+                    // console.log('item[i].dt_txt with index', item[i].dt_txt)
+
+                    // console.log('typeOfText', typeof tomorrowToText)
+
+                    if (item[i].dt_txt.includes(createTomorrow())) {
+                        // );
+                        // index = i;
+
+                        FilteredDayAfterTomorrowWeather.push(item[i])
+                    }
+                }
+
+                return setDayAfterTomorrow(FilteredDayAfterTomorrowWeather)
+            })
+    }
 
     //Parse temperature
     const parseTemp = (p) => (p = parseFloat(p) - 273.15)
 
-   
-
     return (
         <div>
             <div>
-            <button className='tomorrowWeather' onClick={() => tomorrowWeather()}>
+                <button
+                    className='tomorrowWeather'
+                    onClick={() => tomorrowWeather()}
+                >
                     Tomorrow weather
+                </button>
+                <button
+                    className='dayAfterTomorrowWeather'
+                    onClick={() => dayAfterTomorrowWeather()}
+                >
+                    Day after tomorrow weather
                 </button>
                 <h4 className='weatherFilterh4'>
                     Weather in {countries.capital}:
@@ -123,9 +160,7 @@ const WeatherFilter = ({ countries }) => {
                         <ul></ul>
                     )}
                 </div>
-                
             </div>
-           
 
             <div className='container'>
                 <div className='containerHeader'>{tomorrowDayName()}</div>
@@ -139,10 +174,19 @@ const WeatherFilter = ({ countries }) => {
                     />
                 ))}
             </div>
-            
+            <div className='container'>
+                <div className='containerHeader'>{dayAfterTomorrowName()}</div>
+                {DayAfterTomorrow.map((tomorrow) => (
+                    <Weather
+                        tomorrow={tomorrow}
+                        date={tomorrow.dt_txt.slice(10, 13)}
+                        images={images}
+                        parseTemp={parseTemp}
+                        key={tomorrow.dt}
+                    />
+                ))}
+            </div>
         </div>
-
-        
     )
 }
 
