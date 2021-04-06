@@ -15,8 +15,8 @@ const WeatherItem = ({
                     <th>{date}</th>
                 </tr>
 
-                <tr>
-                    <th>{temperature}°c</th>
+                <tr className='temperature'>
+                    <th className='temperature1' >{temperature}°c</th>
                 </tr>
                 <tr>
                     <th className='weatherItemPic'>
