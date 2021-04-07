@@ -9,7 +9,7 @@ const WeatherItem = ({
   today,
 }) => {
   return (
-    <table className='zone purple' key={today}>
+    <table className='zone purple' key={date} >
       <thead>
         <tr>
           <th>{date}</th>

@@ -9,6 +9,7 @@ const Weather = ({ weather, date, images, parseTemp }) => {
   // console.log('images', images)
 
   return (
+  
     <div>
       <WeatherItem
         date={date}

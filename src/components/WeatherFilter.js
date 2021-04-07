@@ -121,7 +121,7 @@ const WeatherFilter = ({ countries }) => {
         </div>
       </div>
 
-      <div className='container'>
+      <div className='container hidden-mobile'>
         <div className='containerHeader'>{tomorrowDayName()}</div>
         {tomorrow.map((weather) => (
           <Weather
@@ -135,7 +135,7 @@ const WeatherFilter = ({ countries }) => {
         <span className='containerFooter'>&nbsp;</span>
       </div>
 
-      <div className='container'>
+      <div className='container hidden-mobile'>
         <div className='containerHeader'>{dayAfterTomorrowName()}</div>
         {dayAfterTomorrow.map((weather) => (
           <Weather
