@@ -1,132 +1,92 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import WeatherFilterItem from './WeatherFilterItem'
-import '../App.css'
-import Weather from './Weather'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../App.css';
+import Weather from './Weather';
 import {
-    createToday,
-    createTomorrow,
-    createDayAfterTomorrow,
-    dayName,
-    tomorrowDayName,
-    dayAfterTomorrowName,
-} from './weatherHelpers/createDays'
+  createToday,
+  createTomorrow,
+  createDayAfterTomorrow,
+  dayName,
+  tomorrowDayName,
+  dayAfterTomorrowName,
+} from './weatherHelpers/createDays';
 
-import { images } from './weatherHelpers/images'
+import { images } from './weatherHelpers/images';
 
 const WeatherFilter = ({ countries }) => {
-    const [weather, setWeather] = useState([])
-    const [filteredToday, setFilteredToday] = useState([])
-    const [tomorrow, setTomorrow] = useState([])
-    const [DayAfterTomorrow, setDayAfterTomorrow] = useState([])
-    //   const [forecast, setForecast] = useState([]);
+  const [weather, setWeather] = useState([]);
+  const [filteredToday, setFilteredToday] = useState([]);
+  const [tomorrow, setTomorrow] = useState([]);
+  const [dayAfterTomorrow, setDayAfterTomorrow] = useState([]);
+  //   const [forecast, setForecast] = useState([]);
 
-    // Fetch weather:
+  // Fetch weather:
 
-    useEffect(() => {
-        const api_key = process.env.REACT_APP_API_KEY
-        axios
-            .get(
-                `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
-            )
-            .then((response) => {
-                let mapIt = [response].map((p) => p.data.list)
+  useEffect(() => {
+    const api_key = process.env.REACT_APP_API_KEY;
+    axios
+      .get(
+        `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
+      )
+      .then((response) => {
+        let mapIt = [response].map((p) => p.data.list);
 
-                // console.log('mapitmapi', mapIt);
-                setWeather([response.data])
+        setWeather([response.data]);
 
-                // console.log('response.data.current', response.data.list.slice(0, 10));
+        mapIt.filter(function(item, i) {
+          let filteredToday = [];
 
-                mapIt.filter(function (item, i) {
-                    // index = i;
+          for (i = 0; i < item.length; i++) {
+            if (item[i].dt_txt.includes(createToday())) {
+              filteredToday.push(item[i]);
+            }
+          }
 
-                    // console.log('item.length', item.length);
+          return setFilteredToday(filteredToday);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [countries.capital]);
 
-                    // console.log('create today', createToday());
+  useEffect(() => {
+    const filteredTomorrow = [];
 
-                    let filteredToday = []
+    weather
+      .map((p) => p.list)
+      .filter(function(item, i) {
+        for (i = 0; i < item.length; i++) {
+          if (item[i].dt_txt.includes(createTomorrow())) {
+            filteredTomorrow.push(item[i]);
+          }
+        }
 
-                    for (i = 0; i < item.length; i++) {
-                        // console.log('TomorrowToText', tomorrowToText);
+        return setTomorrow(filteredTomorrow);
+      });
 
-                        // console.log('typeOfText', typeof tomorrowToText)
+    const FilteredDayAfterTomorrowWeather = [];
 
-                        if (item[i].dt_txt.includes(createToday())) {
-                            filteredToday.push(item[i])
-                        }
-                    }
+    weather
+      .map((p) => p.list)
+      .filter(function(item, i) {
+        for (i = 0; i < item.length; i++) {
+          if (item[i].dt_txt.includes(createDayAfterTomorrow())) {
+            FilteredDayAfterTomorrowWeather.push(item[i]);
+          }
+        }
 
-                    // console.log('filteredToday', filteredToday);
-                    return setFilteredToday(filteredToday)
-                })
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [countries.capital])
+        return setDayAfterTomorrow(FilteredDayAfterTomorrowWeather);
+      });
+  }, [weather]);
 
-    const tomorrowWeather = (value) => {
-        const filteredTomorrow = []
+  //Parse temperature
+  const parseTemp = (p) => (p = parseFloat(p) - 273.15);
 
-        weather
-            .map((p) => p.list)
-            .filter(function (item, i) {
-                // index = i;
-
-                // console.log('item.length', item.length)
-
-                for (i = 0; i < item.length; i++) {
-                    // console.log('TomorrowToText', tomorrowToText);
-                    // console.log('item[i].dt_txt with index', item[i].dt_txt)
-
-                    // console.log('typeOfText', typeof tomorrowToText)
-
-                    if (item[i].dt_txt.includes(createTomorrow())) {
-                        // );
-                        // index = i;
-
-                        filteredTomorrow.push(item[i])
-                    }
-                }
-
-                return setTomorrow(filteredTomorrow)
-            })
-    }
-    const dayAfterTomorrowWeather = (value) => {
-        const FilteredDayAfterTomorrowWeather = []
-
-        weather
-            .map((p) => p.list)
-            .filter(function (item, i) {
-                // index = i;
-
-                // console.log('item.length', item.length)
-
-                for (i = 0; i < item.length; i++) {
-                    // console.log('TomorrowToText', tomorrowToText);
-                    // console.log('item[i].dt_txt with index', item[i].dt_txt)
-
-                    // console.log('typeOfText', typeof tomorrowToText)
-
-                    if (item[i].dt_txt.includes(createTomorrow())) {
-                        // );
-                        // index = i;
-
-                        FilteredDayAfterTomorrowWeather.push(item[i])
-                    }
-                }
-
-                return setDayAfterTomorrow(FilteredDayAfterTomorrowWeather)
-            })
-    }
-
-    //Parse temperature
-    const parseTemp = (p) => (p = parseFloat(p) - 273.15)
-
-    return (
-        <div>
-            <div>
-                <button
+  return (
+    <div>
+      <div>
+        {/* <button
                     className='tomorrowWeather'
                     onClick={() => tomorrowWeather()}
                 >
@@ -137,57 +97,59 @@ const WeatherFilter = ({ countries }) => {
                     onClick={() => dayAfterTomorrowWeather()}
                 >
                     Day after tomorrow weather
-                </button>
-                <h4 className='weatherFilterh4'>
-                    Weather in {countries.capital}:
-                </h4>
+                </button> */}
+        <h4 className='weatherFilterh4'>Weather in {countries.capital}:</h4>
 
-                <div className='container'>
-                    <div className='containerHeader'>{dayName()}</div>
-                    {filteredToday.length > 0 ? (
-                        filteredToday.map((today, i) => (
-                            <WeatherFilterItem
-                                today={today}
-                                images={images}
-                                //   date={today.dt_txt}
-                                date={today.dt_txt.slice(10, 13)}
-                                tomorrowWeather={tomorrowWeather}
-                                parseTemp={parseTemp}
-                                key={i}
-                            />
-                        ))
-                    ) : (
-                        <ul></ul>
-                    )}
-                </div>
-            </div>
-
-            <div className='container'>
-                <div className='containerHeader'>{tomorrowDayName()}</div>
-                {tomorrow.map((tomorrow) => (
-                    <Weather
-                        tomorrow={tomorrow}
-                        date={tomorrow.dt_txt.slice(10, 13)}
-                        images={images}
-                        parseTemp={parseTemp}
-                        key={tomorrow.dt}
-                    />
-                ))}
-            </div>
-            <div className='container'>
-                <div className='containerHeader'>{dayAfterTomorrowName()}</div>
-                {DayAfterTomorrow.map((tomorrow) => (
-                    <Weather
-                        tomorrow={tomorrow}
-                        date={tomorrow.dt_txt.slice(10, 13)}
-                        images={images}
-                        parseTemp={parseTemp}
-                        key={tomorrow.dt}
-                    />
-                ))}
-            </div>
+        <div className='container'>
+          <div className='containerHeader'>{dayName()}</div>
+          {filteredToday.length > 0 ? (
+            filteredToday.map((weather) => (
+              <Weather
+                weather={weather}
+                images={images}
+                //   date={today.dt_txt}
+                date={weather.dt_txt.slice(10, 13)}
+                // tomorrowWeather={tomorrowWeather}
+                parseTemp={parseTemp}
+                key={weather.dt}
+              />
+            ))
+          ) : (
+            <ul></ul>
+          )}
+          <span className='containerFooter'>&nbsp;</span>
         </div>
-    )
-}
+      </div>
 
-export default WeatherFilter
+      <div className='container'>
+        <div className='containerHeader'>{tomorrowDayName()}</div>
+        {tomorrow.map((weather) => (
+          <Weather
+            weather={weather}
+            date={weather.dt_txt.slice(10, 13)}
+            images={images}
+            parseTemp={parseTemp}
+            key={weather.dt}
+          />
+        ))}
+        <span className='containerFooter'>&nbsp;</span>
+      </div>
+
+      <div className='container'>
+        <div className='containerHeader'>{dayAfterTomorrowName()}</div>
+        {dayAfterTomorrow.map((weather) => (
+          <Weather
+            weather={weather}
+            date={weather.dt_txt.slice(10, 13)}
+            images={images}
+            parseTemp={parseTemp}
+            key={weather.dt}
+          />
+        ))}
+        <span className='containerFooter'>&nbsp;</span>
+      </div>
+    </div>
+  );
+};
+
+export default WeatherFilter;
