@@ -139,6 +139,7 @@ responsive tables using li:
 }
 
 .countryItemTable {
+  color: black;
   padding: 10px;
   margin: 0.5rem;
   border-radius: 5px;
@@ -196,7 +197,7 @@ responsive tables using li:
   }
 
 .container {
- 
+  color: black;
   /* display: inline-flex; */
   display: grid;
   grid-template-rows: auto;
@@ -257,6 +258,7 @@ responsive tables using li:
 
 .weatherFilterh4 {
   font-size: 1vw;
+  color: black;
 }
 
 @media only screen and (max-device-width: 420px) {

@@ -9,6 +9,12 @@ const CountryItem = ({
   currency,
   countries,
 }) => {
+
+  // console.log('name', name)
+  // console.log('capital', capital)
+  // console.log('currency', currency)
+
+
   if (languages !== undefined) {
     return (
       <div className='countryItemDiv'>

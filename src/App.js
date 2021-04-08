@@ -41,16 +41,17 @@ function App() {
   const onKeyDownFunc = (e) => {
     // console.log('onKeyDownFunc key', e.keyCode);
 
-    if (e.keyCode === 8 && results.length <= 10 && results.length > 1) {
+    if (e.keyCode === 8 && results.length > 0) {
       setSearchTerm(e.target.value);
-      setShowall(!showAll);
+      setShowall(true);
 
       setoneButtonCountry([]);
       setOnlyOneCountry([]);
-    } else {
-      setSearchTerm(e.target.value);
-      setShowall(true);
     }
+    //  else {
+    //   setSearchTerm(e.target.value);
+    //   setShowall(false);
+    // }
   };
 
   const oneCountry = (e) => {
@@ -86,20 +87,19 @@ function App() {
       <div>
         <div className='findCountries'>
           <div className='countryApp'>Country App</div>
-          <div className='findCountriesDiv1'>
-          Find countries:{' '}</div>
-         <input
-              size='16'
-              autoFocus='autofocus'
-              value={searchTerm}
-              onChange={handleCountryFilter}
-              placeholder='Enter the country...'
-              onKeyDown={onKeyDownFunc}
-            ></input>
-          
-          <br/>
+          <div className='findCountriesDiv1'>Find countries: </div>
+          <input
+            size='16'
+            autoFocus='autofocus'
+            value={searchTerm}
+            onChange={handleCountryFilter}
+            placeholder='Enter the country...'
+            onKeyDown={onKeyDownFunc}
+          ></input>
+
+          <br />
           <p className='findCountriesDiv2'>
-          Too many matches, write the name of the country more accurately...
+            Too many matches, write the name of the country more accurately...
           </p>
         </div>
       </div>
@@ -113,18 +113,16 @@ function App() {
           <div className='findCountries'>
             <div className='countryApp'>Country App</div>
             <div>
-            <div className='findCountriesDiv1'>
-              Find countries:{' '}
-        </div>
-                <input
-                  size='16'
-                  autoFocus='autofocus'
-                  value={searchTerm}
-                  onChange={handleCountryFilter}
-                  placeholder='search countries'
-                  onKeyDown={onKeyDownFunc}
-                ></input>
-             
+              <div className='findCountriesDiv1'>Find countries: </div>
+              <input
+                size='16'
+                autoFocus='autofocus'
+                value={searchTerm}
+                onChange={handleCountryFilter}
+                placeholder='search countries'
+                onKeyDown={onKeyDownFunc}
+              ></input>
+
               <div>
                 {results.map((countries) => (
                   <ButtonCountry
@@ -141,8 +139,7 @@ function App() {
           <div className='findCountries'>
             <div className='countryApp'>Country App</div>
             <div className='findCountriesDiv1'>
-            Find countries:{' '}
-          <br/>
+              Find countries: <br />
               <div>
                 <input
                   size='16'
@@ -187,10 +184,8 @@ function App() {
     return (
       <div className='findCountries'>
         <div className='countryApp'>Country App</div>
-        <div className='findCountriesDiv1'>
-              Find countries:{' '}
-        </div>
-          
+        <div className='findCountriesDiv1'>Find countries: </div>
+
         <input
           size='16'
           autoFocus='autofocus'
@@ -230,10 +225,8 @@ function App() {
   if (results.length === 0) {
     return (
       <div className='findCountries'>
-          <div className='countryApp'>Country App</div>
-       <div className='findCountriesDiv1'>
-              Find countries:{' '}
-        </div>
+        <div className='countryApp'>Country App</div>
+        <div className='findCountriesDiv1'>Find countries: </div>
         <input
           size='16'
           autoFocus='autofocus'
@@ -251,7 +244,6 @@ function App() {
     <div className='findCountriesDiv'>
       <div className='findCountriesDiv1'></div>
       Find countries:{' '}
-    
       <input
         size='10'
         autoFocus='autofocus'
