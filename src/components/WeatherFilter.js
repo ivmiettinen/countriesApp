@@ -100,7 +100,7 @@ const WeatherFilter = ({ countries }) => {
                 </button> */}
         <h4 className='weatherFilterh4'>Weather in {countries.capital}:</h4>
 
-        <div className='container'>
+        <div className='container topContainer'>
           <div className='containerHeader'>{dayName()}</div>
           {filteredToday.length > 0 ? (
             filteredToday.map((weather) => (
@@ -135,7 +135,7 @@ const WeatherFilter = ({ countries }) => {
         <span className='containerFooter'>&nbsp;</span>
       </div>
 
-      <div className='container hidden-mobile'>
+      <div className='container hidden-mobile bottomContainer'>
         <div className='containerHeader'>{dayAfterTomorrowName()}</div>
         {dayAfterTomorrow.map((weather) => (
           <Weather
@@ -148,7 +148,7 @@ const WeatherFilter = ({ countries }) => {
         ))}
         <span className='containerFooter'>&nbsp;</span>
       </div>
-    </div>
+   </div>
   );
 };
 
