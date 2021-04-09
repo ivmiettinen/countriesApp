@@ -19,7 +19,6 @@ function App() {
       .get('https://restcountries.eu/rest/v2/all')
       .then((response) => {
         // console.log('data:', response.data);
-
         setCountires(response.data);
       })
       .catch((error) => {
@@ -39,8 +38,6 @@ function App() {
   };
 
   const onKeyDownFunc = (e) => {
-    // console.log('onKeyDownFunc key', e.keyCode);
-
     if (e.keyCode === 8 && results.length > 0) {
       setSearchTerm(e.target.value);
       setShowall(true);
@@ -48,23 +45,12 @@ function App() {
       setoneButtonCountry([]);
       setOnlyOneCountry([]);
     }
-    //  else {
-    //   setSearchTerm(e.target.value);
-    //   setShowall(false);
-    // }
   };
 
   const oneCountry = (e) => {
-    // console.log('value:', e.target.value);
-
     setShowall(!showAll);
-
     const userPickNation = results.find(({ name }) => name === e.target.value);
-
     setOnlyOneCountry(onlyOneCountry.concat(userPickNation));
-
-    // console.log('capital:', onlyOneCountry.capital);
-
     setoneButtonCountry(oneButtonCountry.concat(e.target.value));
   };
 
@@ -73,14 +59,6 @@ function App() {
     : countries.filter((param) =>
         param.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
       );
-
-  // console.log('results:', results.length);
-
-  let buttoni = (
-    <button value={countries.name} onClick={oneCountry}>
-      Show
-    </button>
-  );
 
   if (results.length > 10) {
     return (
@@ -123,14 +101,16 @@ function App() {
                 onKeyDown={onKeyDownFunc}
               ></input>
 
-              <div>
+              <div className='container2'>
                 {results.map((countries) => (
                   <ButtonCountry
-                    buttoni={buttoni}
-                    handleClick={oneCountry}
+                    onClick={oneCountry}
+                    className='pick-btn'
                     countries={countries}
                     key={countries.numericCode}
-                  />
+                  >
+                    Pick
+                  </ButtonCountry>
                 ))}
               </div>
             </div>
@@ -171,7 +151,13 @@ function App() {
                 ))}
               </div>
               <div>
-                <button onClick={handleCountryFilter2}>Go back</button>
+                <ButtonCountry
+                  countries={countries}
+                  onClick={handleCountryFilter2}
+                  className='backButton'
+                >
+                  Go back
+                </ButtonCountry>
               </div>
             </div>
           </div>
@@ -214,9 +200,13 @@ function App() {
           ))}
         </div>
         <div>
-          <button className='backButton' onClick={handleCountryFilter2}>
+          <ButtonCountry
+            countries={countries}
+            onClick={handleCountryFilter2}
+            className='backButton'
+          >
             Go back
-          </button>
+          </ButtonCountry>
         </div>
       </div>
     );
@@ -259,7 +249,9 @@ function App() {
             countries={countries}
             languages={countries.languages}
             key={countries.numericCode}
-          />
+          >
+            Pick
+          </ButtonCountry>
         ))}
       </div>
     </div>

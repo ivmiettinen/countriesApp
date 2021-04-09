@@ -98,9 +98,9 @@ const WeatherFilter = ({ countries }) => {
                 >
                     Day after tomorrow weather
                 </button> */}
-        <h4 className='weatherFilterh4'>Weather in {countries.capital}:</h4>
+        <span className='container weatherFilterh4'>Weather in {countries.capital}:</span>
 
-        <div className='container topContainer'>
+        <div className='container'>
           <div className='containerHeader'>{dayName()}</div>
           {filteredToday.length > 0 ? (
             filteredToday.map((weather) => (

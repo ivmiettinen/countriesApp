@@ -6,8 +6,8 @@ const ButtonCountry = (props) => {
     return (
         <p>
             {props.countries.name}
-            <button className='pick-btn' onClick={props.handleClick} value={props.countries.name}>
-                Pick
+            <button className={props.className} onClick={props.onClick} value={props.countries.name}>
+               {props.children}
             </button>
         </p>
     )
