@@ -1,15 +1,13 @@
 import React from 'react';
 
-const WeatherItem = ({
-  temperature,
-  icon,
-  description,
-  date,
-  images,
-  today,
-}) => {
+const WeatherItem = ({ temperature, icon, description, date, images }) => {
+  // console.log('temp,', temperature);
+  // console.log('icon,', icon);
+  // console.log('description,', description);
+  // console.log('date,', date);
+
   return (
-    <table className='zone purple' key={date} >
+    <table className='zone purple' key={date}>
       <thead>
         <tr>
           <th>{date}</th>

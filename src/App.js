@@ -171,7 +171,6 @@ function App() {
       <div className='findCountries'>
         <div className='countryApp'>Country App</div>
         <div className='findCountriesDiv1'>Find countries: </div>
-
         <input
           size='16'
           autoFocus='autofocus'

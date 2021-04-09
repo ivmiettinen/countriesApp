@@ -18,6 +18,7 @@ const WeatherFilter = ({ countries }) => {
   const [filteredToday, setFilteredToday] = useState([]);
   const [tomorrow, setTomorrow] = useState([]);
   const [dayAfterTomorrow, setDayAfterTomorrow] = useState([]);
+  const [weatherError, setWeatherError] = useState(null);
   //   const [forecast, setForecast] = useState([]);
 
   // Fetch weather:
@@ -32,6 +33,7 @@ const WeatherFilter = ({ countries }) => {
         let mapIt = [response].map((p) => p.data.list);
 
         setWeather([response.data]);
+        setWeatherError(false);
 
         mapIt.filter(function(item, i) {
           let filteredToday = [];
@@ -47,6 +49,7 @@ const WeatherFilter = ({ countries }) => {
       })
       .catch((error) => {
         console.log(error);
+        setWeatherError(true);
       });
   }, [countries.capital]);
 
@@ -86,24 +89,16 @@ const WeatherFilter = ({ countries }) => {
   return (
     <div>
       <div>
-        {/* <button
-                    className='tomorrowWeather'
-                    onClick={() => tomorrowWeather()}
-                >
-                    Tomorrow weather
-                </button>
-                <button
-                    className='dayAfterTomorrowWeather'
-                    onClick={() => dayAfterTomorrowWeather()}
-                >
-                    Day after tomorrow weather
-                </button> */}
-        <span className='container weatherFilterh4'>Weather in {countries.capital}:</span>
-
-        <div className='container'>
-          <div className='containerHeader'>{dayName()}</div>
-          {filteredToday.length > 0 ? (
-            filteredToday.map((weather) => (
+        <span className='container weatherFilterh4'>
+          Weather in {countries.capital}:
+        </span>
+        {weatherError ? (
+          <div className='container bottomContainer'><strong>Unfortunately Weather API does not provide weather information for
+          this capital.</strong></div> 
+        ) : (
+          <div className='container'>
+            <div className='containerHeader'>{dayName()}</div>
+            {filteredToday.map((weather) => (
               <Weather
                 weather={weather}
                 images={images}
@@ -112,15 +107,15 @@ const WeatherFilter = ({ countries }) => {
                 // tomorrowWeather={tomorrowWeather}
                 parseTemp={parseTemp}
                 key={weather.dt}
+                
               />
-            ))
-          ) : (
-            <ul></ul>
-          )}
-          <span className='containerFooter'>&nbsp;</span>
-        </div>
+            ))}
+            <span className='containerFooter'>&nbsp;</span>
+          </div>
+        )}
       </div>
 
+      {weatherError ? (<div></div>) : (
       <div className='container hidden-mobile'>
         <div className='containerHeader'>{tomorrowDayName()}</div>
         {tomorrow.map((weather) => (
@@ -129,12 +124,14 @@ const WeatherFilter = ({ countries }) => {
             date={weather.dt_txt.slice(10, 13)}
             images={images}
             parseTemp={parseTemp}
+          
             key={weather.dt}
           />
         ))}
         <span className='containerFooter'>&nbsp;</span>
-      </div>
+      </div>) }
 
+      {weatherError ? (<div></div>) : (
       <div className='container hidden-mobile bottomContainer'>
         <div className='containerHeader'>{dayAfterTomorrowName()}</div>
         {dayAfterTomorrow.map((weather) => (
@@ -143,12 +140,13 @@ const WeatherFilter = ({ countries }) => {
             date={weather.dt_txt.slice(10, 13)}
             images={images}
             parseTemp={parseTemp}
+           
             key={weather.dt}
           />
         ))}
         <span className='containerFooter'>&nbsp;</span>
-      </div>
-   </div>
+      </div>)}
+    </div>
   );
 };
 

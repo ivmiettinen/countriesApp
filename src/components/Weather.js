@@ -4,7 +4,7 @@ import WeatherItem from './WeatherItem';
 const Weather = ({ weather, date, images, parseTemp }) => {
   // console.log('weather', weather);
   // console.log('date', date);
-  // console.log('typee', typeof tomorrow);
+  // console.log('typee', typeof weather);
 
   // console.log('images', images)
 
@@ -17,6 +17,7 @@ const Weather = ({ weather, date, images, parseTemp }) => {
         temperature={parseTemp(weather.main.temp).toFixed(1)}
         icon={weather.weather.map((p) => p.icon)}
         description={weather.weather.map((p) => p.description)}
+
         key={weather.dt}
       />
     </div>
