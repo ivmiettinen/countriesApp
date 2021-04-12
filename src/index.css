@@ -221,7 +221,7 @@ grid-template-columns: auto-fit;
   }
 }
 
-@media only screen and (max-device-width: 300px) {
+@media only screen and (max-device-width: 325px) {
 
   
   .countryItemTable {
@@ -252,59 +252,10 @@ grid-template-columns: auto-fit;
         font-size: 2vw;
     
     }
-}
 
-@media only screen and (max-device-width: 280px) {
-
-  .container:nth-child(2){
-    border-bottom-right-radius: 0.5rem;
-     border-bottom-left-radius: 0.5rem;
- }
-
- .container {
-  grid-template-columns: auto-fit;
-      grid-template-areas:
-      "header  header"
-      "main "
-      "main "
-      "footer";
-      font-size: 2vw;
-  
-  }
-    .hidden-mobile{
+    .weatherFilterDiv{
       display: none;
     }
-}
-
-@media only screen and (max-device-width: 220px) {
-
-  .countryItemTable {
-    grid-gap: 1px;
-    grid-template-columns: 1fr;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 8px;
-  }
-
-  .container:nth-child(2){
-    border-bottom-right-radius: 0.5rem;
-     border-bottom-left-radius: 0.5rem;
- }
-   
- .container {
-  grid-template-columns: auto-fit;
-      grid-template-areas:
-      "header  header"
-      "main "
-      "main "
-      "footer";
-      font-size: 2vw;
-  
-  }
-
-  .hidden-mobile{
-    display: none;
-  }
 }
 
 .countryItemTable,

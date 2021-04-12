@@ -7,20 +7,11 @@ const CountryItem = ({
   flag,
   languages,
   currency,
-  countries,
 }) => {
-
-  // console.log('name', name)
-  // console.log('capital', capital)
-  // console.log('currency', currency)
-
-
   if (languages !== undefined) {
     return (
       <div className='countryItemDiv'>
-        <h2 className='CountryItemHeader'>
-          {name}
-        </h2>
+        <h2 className='CountryItemHeader'>{name}</h2>
 
         <img className='flagPicture' src={flag} alt='Country flag'></img>
 

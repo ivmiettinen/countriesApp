@@ -38,8 +38,6 @@ export const createDayAfterTomorrow = () => {
     '-' +
     ('0' + tomorrow.getDate()).slice(-2);
 
-  //
-
   return dayAfterTomorrowString;
 };
 
@@ -70,10 +68,6 @@ export const tomorrowDayName = () => {
 };
 export const dayAfterTomorrowName = () => {
   const dayName = days[today.getDay() + 2];
-
-  //   console.log('arraysta today.getDay()', today.getDay() + 1);
-
-  //   console.log('dayName', dayName);
 
   if (today.getDay() + 2 === 7) {
     return 'Sunday';
