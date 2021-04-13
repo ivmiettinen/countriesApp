@@ -1,6 +1,6 @@
 const today = new Date();
 
-export const createToday = (e) => {
+export const createToday = () => {
   const TodayDateString =
     today.getFullYear() +
     '-' +
@@ -11,7 +11,7 @@ export const createToday = (e) => {
   return TodayDateString;
 };
 
-export const createTomorrow = (e) => {
+export const createTomorrow = () => {
   const tomorrow = new Date(today);
 
   tomorrow.setDate(tomorrow.getDate() + 1);

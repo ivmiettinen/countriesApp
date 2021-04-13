@@ -1,11 +1,10 @@
 How to run:
 
-1.Step:
-Add your own 'REACT_APP_API_KEY' for http://api.openweathermap.org/
+1.Clone the project. Run nmp install. 
 
-2.Step:
+2.Add your own 'REACT_APP_API_KEY' for http://api.openweathermap.org/
 
-set 'REACT_APP_API_KEY' && npm run dev
+3.set 'REACT_APP_API_KEY' && npm start
 
 
 Heroku live version:

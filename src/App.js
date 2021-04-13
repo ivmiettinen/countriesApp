@@ -29,7 +29,7 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
-  const handleCountryFilter2 = (e) => {
+  const handleBackPress = (e) => {
     setSearchTerm(e.target.value);
     setShowall(true);
     setoneButtonCountry([]);
@@ -37,7 +37,7 @@ function App() {
   };
 
   const onKeyDownFunc = (e) => {
-    if (e.keyCode === 8 && results.length > 0) {
+    if (e.keyCode === 8 && results.length > 1) {
       setSearchTerm(e.target.value);
       setShowall(true);
 
@@ -55,8 +55,8 @@ function App() {
 
   const results = !searchTerm
     ? countries
-    : countries.filter((param) =>
-        param.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+    : countries.filter((country) =>
+    country.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
       );
 
   if (results.length > 10) {
@@ -152,7 +152,7 @@ function App() {
               <div>
                 <ButtonCountry
                   countries={countries}
-                  onClick={handleCountryFilter2}
+                  onClick={handleBackPress}
                   className='backButton'
                 >
                   Go back
@@ -200,7 +200,7 @@ function App() {
         <div>
           <ButtonCountry
             countries={countries}
-            onClick={handleCountryFilter2}
+            onClick={handleBackPress}
             className='backButton'
           >
             Go back

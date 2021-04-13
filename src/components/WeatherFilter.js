@@ -32,12 +32,12 @@ const WeatherFilter = ({ countries }) => {
         `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
       )
       .then((response) => {
-        let mapIt = [response].map((p) => p.data.list);
+        let mapData = [response].map((p) => p.data.list);
 
         setWeather([response.data]);
         setWeatherError(false);
 
-        mapIt.filter(function(item, i) {
+        mapData.filter(function(item, i) {
           let filteredToday = [];
 
           for (i = 0; i < item.length; i++) {
