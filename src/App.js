@@ -36,18 +36,20 @@ function App() {
     setOnlyOneCountry([]);
   };
 
+  //Handle user input when pressing delete button:
+
   const onKeyDownFunc = (e) => {
-    if (e.keyCode === 8 && results.length > 1) {
+    console.log('results length', results.length);
+    if (e.keyCode === 8) {
       setSearchTerm(e.target.value);
       setShowall(true);
-
       setoneButtonCountry([]);
       setOnlyOneCountry([]);
     }
   };
 
   const oneCountry = (e) => {
-    setShowall(!showAll);
+    setShowall(false);
     const userPickNation = results.find(({ name }) => name === e.target.value);
     setOnlyOneCountry(onlyOneCountry.concat(userPickNation));
     setoneButtonCountry(oneButtonCountry.concat(e.target.value));
@@ -56,7 +58,7 @@ function App() {
   const results = !searchTerm
     ? countries
     : countries.filter((country) =>
-    country.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+        country.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
       );
 
   if (results.length > 10) {
@@ -115,6 +117,7 @@ function App() {
             </div>
           </div>
         ) : (
+          //When user clicks button for oneCountry, return this:
           <div className='findCountries'>
             <div className='countryApp'>Country App</div>
             <div className='findCountriesDiv1'>
@@ -167,6 +170,7 @@ function App() {
 
   if (results.length === 1) {
     return (
+      //When user types countries name directly to input, return this:
       <div className='findCountries'>
         <div className='countryApp'>Country App</div>
         <div className='findCountriesDiv1'>Find countries: </div>
@@ -227,33 +231,6 @@ function App() {
       </div>
     );
   }
-
-  return (
-    <div className='findCountriesDiv'>
-      <div className='findCountriesDiv1'></div>
-      Find countries:{' '}
-      <input
-        size='10'
-        autoFocus='autofocus'
-        value={searchTerm}
-        onChange={handleCountryFilter}
-        placeholder='search countries'
-        onKeyDown={onKeyDownFunc}
-      ></input>
-      <h3>Countries</h3>
-      <div>
-        {results.map((countries) => (
-          <ButtonCountry
-            countries={countries}
-            languages={countries.languages}
-            key={countries.numericCode}
-          >
-            Pick
-          </ButtonCountry>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 export default App;
