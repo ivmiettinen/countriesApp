@@ -4,8 +4,6 @@ import ButtonCountry from './components/ButtonCountry';
 import WeatherFilter from './components/WeatherFilter';
 import CountryItem from './components/CountryItem';
 
-import './App.css';
-
 function App() {
   const [countries, setCountires] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -39,7 +37,6 @@ function App() {
   //Handle user input when pressing delete button:
 
   const onKeyDownFunc = (e) => {
-    console.log('results length', results.length);
     if (e.keyCode === 8) {
       setSearchTerm(e.target.value);
       setShowall(true);

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../App.css';
 import Weather from './Weather';
 import {
   createToday,
@@ -13,7 +12,7 @@ import {
 
 import { images } from './weatherHelpers/images';
 
-//Parse temperature
+//Parse temperature:
 const parseTemp = (p) => (p = parseFloat(p) - 273.15);
 
 const WeatherFilter = ({ countries }) => {

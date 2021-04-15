@@ -1,11 +1,14 @@
 export const images = importAll(
-  require.context('../../images', false, /\.(png|jpe?g|svg)$/)
+  require.context('../../images/weatherImages', false, /\.(png|jpe?g|svg)$/)
 );
 
-function importAll(r) {
-  let images = {};
-  r.keys().map((item, index) => {
-    return (images[item.replace('./', '')] = r(item));
+//import all images:
+
+function importAll(allImages) {
+  const imageObject = {};
+
+  allImages.keys().map((item) => {
+    return (imageObject[item.replace('./', '')] = allImages(item));
   });
-  return images;
+  return imageObject;
 }

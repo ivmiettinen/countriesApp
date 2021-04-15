@@ -2,6 +2,7 @@ import React from 'react';
 import WeatherItem from './WeatherItem';
 
 const Weather = ({ weather, date, images, parseTemp }) => {
+
   return (
     <div>
       <WeatherItem
