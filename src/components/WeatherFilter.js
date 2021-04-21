@@ -28,7 +28,7 @@ const WeatherFilter = ({ countries }) => {
     const api_key = process.env.REACT_APP_API_KEY;
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${countries.capital}&APPID=${api_key}`
       )
       .then((response) => {
         let mapData = [response].map((p) => p.data.list);
