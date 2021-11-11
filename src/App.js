@@ -14,7 +14,7 @@ function App() {
   //Fetch countries:
   useEffect(() => {
     axios
-      .get('https://restcountries.eu/rest/v2/all')
+      .get('https://restcountries.com/v2/all')
       .then((response) => {
         setCountires(response.data);
       })
