@@ -1,9 +1,7 @@
 # CountriesApi
 
 Find your inner traveller!
-With CountriesApi you can explore the world and its wondrous countries. You will also find a weather forecast for each capital.
-
-
+With CountriesApp you can explore the world and its wondrous countries. You will also find a weather forecast for each capital.
 
 
 ## How to run the project:
@@ -15,6 +13,6 @@ With CountriesApi you can explore the world and its wondrous countries. You will
 3.set 'REACT_APP_API_KEY' && npm start
 
 
-## Heroku live version:
+## Netlify live version:
 
-https://country--api.herokuapp.com/
+https://beamish-pegasus-33e77b.netlify.app/
